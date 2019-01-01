@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- SEO -->
+    <title>JS: Работа с DOM</title>
+    <meta name="description" content="JS: Работа с DOM">
+
+    <!-- URL CANONICAL -->
+    <!-- <link rel="canonical" href="http://your-url.com/"> -->
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
+
+    <!-- CSS WebSlides -->
+    <link rel="stylesheet" type='text/css' media='all' href="styles.min.css">
+
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" sizes="16x16" href="images/favicons/favicon.png">
+    <link rel="shortcut icon" sizes="32x32" href="images/favicons/favicon-32.png">
+    <link rel="apple-touch-icon icon" sizes="76x76" href="images/favicons/favicon-76.png">
+    <link rel="apple-touch-icon icon" sizes="120x120" href="images/favicons/favicon-120.png">
+    <link rel="apple-touch-icon icon" sizes="152x152" href="images/favicons/favicon-152.png">
+    <link rel="apple-touch-icon icon" sizes="180x180" href="images/favicons/favicon-180.png">
+    <link rel="apple-touch-icon icon" sizes="192x192" href="images/favicons/favicon-192.png">
+
+    <!-- Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#333333">
+
+</head>
+<body>
+<header role="banner">
+    <div class="landing-bg"></div>
+    <nav role="navigation">
+        <a href="index.html" title="Home" class="logo">
+            <img src="./images/logo-dark.png" alt="" class="print-only"/>
+            <img src="./images/logo.png" alt="exadel"/>
+        </a>
+        <ul>
+            <li>
+                <a href="https://learn.javascript.ru" target="_blank" class="navlink">
+                    <img src="images/logos/learn.javascript.svg"/>
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.mozilla.org" target="_blank" class="navlink">
+                    <img src="images/logos/mdn.svg"/>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main">
+    <article id="webslides" class="vertical">
+        <include src="./slides/main.html"></include>
+
+        <include src="./slides/links.html"></include>
+
+        <include src="./slides/intro1.html"></include>
+        <include src="./slides/intro2.html"></include>
+        <include src="./slides/bom.html"></include>
+        <include src="./slides/dom-1.html"></include>
+        <include src="./slides/dom-2.html"></include>
+        <include src="./slides/dom-api-nav-1.html"></include>
+        <include src="./slides/dom-api.html"></include>
+        <include src="./slides/dom-api-nav-2.html"></include>
+        <include src="./slides/dom-api-get-1.html"></include>
+        <include src="./slides/dom-api-get-2.html"></include>
+        <include src="./slides/dom-api-get-3.html"></include>
+        <include src="./slides/dom-api-get-4.html"></include>
+        <include src="./slides/dom-api-get-5.html"></include>
+        <include src="./slides/dom-api-get-5-1.html"></include>
+
+        <include src="./slides/js-node-list-1.html"></include>
+        <include src="./slides/js-node-list-2.html"></include>
+
+        <include src="./slides/dom-api-get-pseudo.html"></include>
+
+        <include src="./slides/dom-api-nav-3.html"></include>
+        <include src="./slides/js-node-envrefs-1.html"></include>
+        <include src="./slides/js-node-envrefs-2.html"></include>
+
+        <include src="./slides/dom-api-nav-4.html"></include>
+        <include src="./slides/dom-create-element.html"></include>
+
+        <include src="./slides/dom-manipulate-elements-1.html"></include>
+        <include src="./slides/dom-manipulate-elements-2.html"></include>
+        <include src="./slides/dom-manipulate-elements-3.html"></include>
+
+        <include src="./slides/dom-element-modification-1.html"></include>
+        <include src="./slides/dom-element-modification-2.html"></include>
+
+        <include src="./slides/dom-element-modification-classes-1.html"></include>
+        <include src="./slides/dom-element-modification-classes-2.html"></include>
+
+        <include src="./slides/dom-element-modification-styles-1.html"></include>
+        <include src="./slides/dom-element-modification-styles-2.html"></include>
+
+        <include src="./slides/dom-template-usage-1.html"></include>
+
+        <include src="./slides/test-page.html"></include>
+
+        <include src="./slides/resource-page.html"></include>
+
+        <include src="./slides/best-practices-intro.html"></include>
+        <include src="./slides/best-practices-1.html"></include>
+        <include src="./slides/best-practices-1-1.html"></include>
+        <include src="./slides/best-practices-2.html"></include>
+        <include src="./slides/best-practices-3.html"></include>
+        <include src="./slides/best-practices-3-1.html"></include>
+
+        <include src="./slides/best-practices-4.html"></include>
+
+        <include src="./slides/task-page.html"></include>
+        <include src="./slides/questions-page.html"></include>
+        <include src="./slides/thanks-page.html"></include>
+    </article>
+</main>
+
+<dialog id="test-dialog">
+    <form id="test-form">
+    </form>
+</dialog>
+
+<!-- Scripts -->
+<script src="main.min.js"></script>
+<script>
+    window.ws = new WebSlides({
+        showIndex: true,
+        changeOnClick: false,
+        navigateOnScroll: 60, // def: 40
+        slideOffset: 80 // def: 50
+    });
+</script>
+<form method="post" action="https://codepen.io/pen/define" class="hidden" target="_blank">
+    <input type="hidden" name="data"/>
+    <input type="submit"/>
+</form>
+</body>
+</html>

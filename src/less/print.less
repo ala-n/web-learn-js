@@ -1,0 +1,31 @@
+/* Print overrides */
+.print-only {
+	display: none;
+}
+
+@media print {
+	.print-only {
+		display: block;
+	}
+
+	.fadeInUp, .zoomIn {
+		animation: none !important;
+	}
+
+	#webslides-zoomed {
+		display: none;
+	}
+
+	.wrap > :last-child {
+		margin-bottom: 6px;
+	}
+
+	.no-print {
+		display: none !important;
+	}
+
+	a[href^="http"] {
+		color: #00a3ff !important;
+		text-decoration: underline;
+	}
+}
