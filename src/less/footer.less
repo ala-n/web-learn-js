@@ -1,0 +1,27 @@
+footer {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  padding: 0 2.4rem;
+  text-align: right;
+  img {
+    height: 20px;
+    vertical-align: middle;
+  }
+  p {
+    line-height: 20px;
+    margin-bottom: 0;
+  }
+
+  .ws-ready & {
+    position: absolute;
+    top: auto;
+    left: 0;
+    bottom: 0;
+  }
+}
+footer[role='contentinfo'] {
+  background-color: rgba(0,0,0,0.2);
+}

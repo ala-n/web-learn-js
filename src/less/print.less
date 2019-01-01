@@ -29,3 +29,54 @@
 		text-decoration: underline;
 	}
 }
+
+@media print {
+	@page {
+		margin: .5cm;
+		size: A4 landscape;
+	}
+
+	* {
+		background: transparent !important;
+		color: #000 !important;
+		-webkit-filter: none !important;
+		filter: none !important;
+		text-shadow: none !important;
+	}
+
+	html,
+	body,
+	#webslides {
+		height: auto !important;
+		overflow: auto !important;
+		width: auto !important;
+	}
+
+	#webslides {
+		overflow-x: auto !important;
+		overflow-y: auto !important;
+	}
+
+	section,
+	.slide {
+		display: -webkit-box !important;
+		display: -ms-flexbox !important;
+		display: flex !important;
+		height: auto !important;
+	}
+
+	section * {
+		-webkit-animation: none;
+		animation: none;
+	}
+
+	table,
+	figure {
+		page-break-inside: avoid;
+	}
+
+	#counter,
+	#navigation {
+		display: none;
+	}
+}

@@ -1,0 +1,121 @@
+.landing-bg {
+  background: url(./images/BGMain.jpg) repeat center;
+}
+
+header {
+  position: absolute;
+  z-index: 3;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+
+  padding: 10px 2.4rem;
+
+  transition: all .4s ease-in-out;
+
+  nav {
+    display: flex;
+    position: relative;
+    flex-wrap: nowrap;
+
+    width: 100%;
+    height: 100%;
+
+    a.logo {
+      display: block;
+      flex: 0 0 auto;
+      align-self: flex-start;
+      height: 100%;
+
+      img {
+        width: auto;
+        height: 100%;
+        vertical-align: middle;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      flex: 1 0 auto;
+
+      li {
+        float: left;
+        list-style: none;
+        position: relative;
+
+        flex: 0 0 auto;
+        width: auto;
+        img {
+          margin: auto;
+        }
+      }
+    }
+
+    a.navlink {
+      display: block;
+      height: 100%;
+
+      text-decoration: none;
+
+      img {
+        width: auto;
+        height: 40px;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+  }
+
+  .landing-bg {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    width: 100%;
+    height: 100vh;
+
+    background-size: cover;
+
+    transition: opacity .4s ease-in-out;
+  }
+  &:hover {
+    .landing-bg {
+      opacity: 1;
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  .landing-slide {
+    margin-top: -60px;
+  }
+
+  header {
+    position: relative;
+
+    nav ul {
+      display: none;
+    }
+
+    .landing-bg {
+      opacity: 1;
+    }
+  }
+}
+
+@media print {
+  header nav a.logo {
+    img:not(.print-only) {
+      display: none;
+    }
+  }
+}

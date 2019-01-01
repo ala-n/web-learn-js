@@ -1,0 +1,63 @@
+blockquote {
+  display: inline-block;
+  position: relative; }
+blockquote p {
+  font-size: 2.4rem;
+  line-height: 4rem; }
+blockquote p:last-child {
+  margin-bottom: 3.2rem; }
+
+/* -- Interviews dl.text-interview -- */
+dd blockquote p:last-child {
+  margin-bottom: 0; }
+
+cite {
+  display: block;
+  text-align: center; }
+cite:before {
+  content: '\2014   \2009';
+  margin-right: 6px; }
+
+cite span {
+  display: block; }
+
+/* -- A big Blockquote -- */
+/* .wall will be deprecated soon. Use .text-quote ;) */
+.text-quote,
+.wall {
+  /* Versatility: blockquote, p, h2... */
+  position: relative;
+}
+
+.text-quote:before,
+.wall:before {
+  content: '\201C';
+  font-family: arial, sans-serif;
+  font-size: 12rem;
+  height: 5.6rem;
+  left: -.8rem;
+  line-height: 1;
+  position: absolute;
+  text-align: center;
+  top: -4rem;
+  width: 5.6rem;
+}
+
+@media (min-width: 768px) {
+  .text-quote,
+  .wall {
+    padding-left: 6.4rem;
+  }
+
+  .text-quote p,
+  .wall p {
+    font-size: 3.2rem;
+    line-height: 4.8rem;
+  }
+
+  .text-quote:before,
+  .wall:before {
+    left: .8rem;
+    top: -1.6rem;
+  }
+}
