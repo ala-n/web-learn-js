@@ -1,37 +1,39 @@
+import {html, render} from 'lit-html';
+import DialogPolyfill from './dialog-polyfill';
+
 (function () {
-    const template =
-        `<div class="questions-list">
-                {{#questions}}
-                <fieldset class="box-white question-item" data-question-id="{{id}}">
-                    <legend>{{text}}</legend>
-                    {{#code}}<pre class="question-code">{{code}}</pre>{{/code}}
-                    {{#answers}}
+    const template = (questions) =>
+        html`<div class="questions-list">
+            ${questions.map((question) => html`
+                <fieldset class="box-white question-item" data-question-id="${question.id}">
+                    <legend>${question.text}</legend>
+                    ${question.code ? html`<pre class="question-code">${question.code}</pre>` : ''}
+                    ${question.answers.map((value) => html`
                     <div class="question-answer">
-                        <label><input type="{{type}}" name="{{id}}" value="{{value}}"/> {{value}}</label>
+                        <label><input type="${question.type || 'checkbox'}" name="${question.id}" value="${value}"/> ${value}</label>
                     </div>
-                    {{/answers}}
+                    `)}
                 </fieldset>
-                {{/questions}}
-                <div class="dlg-toolbar">
-                    <button type="submit">Проверить</button>
-                    <button type="button" onclick="endTest()">Закрыть</button>      
-                </div>    
+            `)}
+            <div class="dlg-toolbar">
+                <button type="submit">Проверить</button>
+                <button type="button" onclick="endTest()">Закрыть</button>      
+            </div>    
          </div>`;
-    Mustache.parse(template);
 
     function loadForm(form, path) {
         fetch(path + '.json')
             .then((res) => res.json())
             .then((data) => {
                 if (data.questions && data.questions.length) {
-                    data.questions.forEach((question, number) => {
+                    const questions = data.questions.map((question, number) => {
 	                    question.id = `q-${number+1}`;
-                        question.answers = (question.answers || []).map((value, index) => ({value, index}));
+                        return question;
                     });
 
-                    form.innerHTML = Mustache.render(template, data);
+                    render(template(questions), form);
 
-                    form._validateObject = data.questions.reduce((objValidate, item) => {
+                    form._validateObject = questions.reduce((objValidate, item) => {
                         objValidate[item.id] = item.right;
                         return objValidate;
                     } ,{});
@@ -74,7 +76,6 @@
     let testState;
     window.endTest = function () {
         if (testState) {
-            testState.form.innerHTML = '';
             testState.dialog.close();
             testState = null;
         }
@@ -83,13 +84,10 @@
         window.endTest();
         if (path) {
             const dialog = document.getElementById('test-dialog');
-
             // Polyfill
-	        window.dialogPolyfill.registerDialog(dialog);
+            DialogPolyfill.registerDialog(dialog);
 
             const form = document.getElementById('test-form');
-
-            dialog.showModal();
 
             loadForm(form, path);
             testState = {
@@ -97,6 +95,9 @@
                 dialog,
                 path
             };
+
+            dialog.showModal();
+
             form.onsubmit = checkForm.bind(null, testState);
         }
     }

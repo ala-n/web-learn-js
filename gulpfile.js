@@ -34,8 +34,8 @@ function serveTask() {
     gulp.task('rebuild-scripts', () => tasks.buildJS(false).pipe(browserSync.stream()));
 
     // INIT WATCH
-    gulp.watch('src/js/*.js', gulp.series('rebuild-scripts'));
-    gulp.watch('src/js/*.ts', gulp.series('rebuild-scripts'));
+    gulp.watch('src/js/**/*.js', gulp.series('rebuild-scripts'));
+    gulp.watch('src/js/**/*.ts', gulp.series('rebuild-scripts'));
     gulp.watch('src/less/*.less', gulp.series('rebuild-less'));
     gulp.watch('src/**/*.html', gulp.series('rebuild-html'));
 }
