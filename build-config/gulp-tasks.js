@@ -48,7 +48,7 @@ function buildLess(prod) {
 function buildJS(prod) {
     return gulp.src([path.join(BUNDLE_DIR, '/*.ts'), path.join(BUNDLE_DIR, '/*.js')])
         .pipe(named())
-        .pipe(webpackStream(wpConfig.getConfig(prod)))
+        .pipe(webpackStream(prod ? wpConfig.getProdConfig() : wpConfig.getDevConfig()))
         .pipe(gulp.dest(OUTPUT_DIR));
 }
 

@@ -1,6 +1,5 @@
 // DEPENDENCIES
 const gulp = require('gulp');
-const bsync = require('browser-sync');
 const tasks = require('./build-config/gulp-tasks');
 
 const CONSTANTS = require('./build-config/paths-config.json');
@@ -17,7 +16,7 @@ gulp.task('build', gulp.parallel('build-less', 'build-js', 'build-html'));
 gulp.task('build-prod', gulp.series(gulp.parallel('build-less-prod', 'build-js-prod', 'build-html'), 'gzip'));
 
 function serveTask() {
-    const browserSync = bsync.create();
+    const browserSync = require('browser-sync').create();
     browserSync.init({
         server: [
             './' + CONSTANTS.OUTPUT_DIR,

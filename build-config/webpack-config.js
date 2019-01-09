@@ -27,22 +27,22 @@ const MAIN_CONFIG = {
     }
 };
 
-const PROD_CONFIG = {
-    watch: false,
-    mode: 'production'
+module.exports.getDevConfig = function () {
+    const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+    return Object.assign({}, MAIN_CONFIG, {
+        mode: 'development',
+        devtool: 'inline-source-map',
+        plugins: [
+            new ForkTsCheckerWebpackPlugin({
+                tsconfig: TS_CONFIG
+            })
+        ]
+    });
 };
 
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const DEV_CONFIG = {
-    mode: 'development',
-    devtool: 'inline-source-map',
-    plugins: [
-        new ForkTsCheckerWebpackPlugin({
-            tsconfig: TS_CONFIG
-        })
-    ]
-};
-
-module.exports.getConfig = function (prod) {
-    return Object.assign({}, MAIN_CONFIG, prod ? PROD_CONFIG : DEV_CONFIG);
+module.exports.getProdConfig = function () {
+    return Object.assign({}, MAIN_CONFIG, {
+        watch: false,
+        mode: 'production'
+    });
 };
