@@ -1,0 +1,5 @@
+{
+  "OUTPUT_DIR": "publish",
+  "BUNDLE_DIR": "src",
+  "ASSETS_DIR": "assets"
+}

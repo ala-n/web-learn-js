@@ -1,4 +1,5 @@
 .idea
 target
+publish
 node_modules
 *.iml
