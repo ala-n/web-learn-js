@@ -31,10 +31,12 @@
     "gulp-sourcemaps": "^2.6.4"
   },
   "scripts": {
-    "start": "npm run build-prod && node index.js",
+    "start": "node index.js",
     "run": "npm run build && node index.js",
+    "prod": "gulp build-prod",
     "build": "gulp build",
-    "develop": "gulp default"
+    "develop": "gulp default",
+    "postinstall": "npm run prod"
   },
   "keywords": [
     "js",
