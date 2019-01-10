@@ -1,8 +1,4 @@
 (function () {
-	function forEachElement(parray, callback) {
-		parray && Array.prototype.forEach.call(parray, callback);
-	}
-
 	function openCodepen(title, htmlCode, cssCode, jsCode) {
 		const form = document.querySelector('form[action="https://codepen.io/pen/define"]');
 		if (form) {
@@ -27,11 +23,11 @@
 
         let js = '', css = '', html = '';
 
-        forEachElement(jsEls, function (script) {
+        Array.from(jsEls).forEach(function (script) {
 			js += script.innerHTML + '\n';
 			cloneContent.removeChild(script);
         });
-        forEachElement(cssEls, function (style) {
+        Array.from(cssEls).forEach(function (style) {
             css += style.innerHTML + '\n';
             cloneContent.removeChild(style);
         });
@@ -44,7 +40,7 @@
 
 	// Bind buttons
 	let buttons = document.querySelectorAll('[data-codepen-id]');
-	forEachElement(buttons, function (button) {
+	Array.from(buttons).forEach(function (button) {
 		let id = button.getAttribute('data-codepen-id');
 		if (id) {
 			button.addEventListener('click', (e) => {

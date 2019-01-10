@@ -11,16 +11,12 @@ const CLASSES = {
 
 // Default plugins
 const PLUGINS = {
-  'autoslide': Plugins.AutoSlide,
-  'clickNav': Plugins.ClickNav,
   'grid': Plugins.Grid,
   'hash': Plugins.Hash,
   'keyboard': Plugins.Keyboard,
   'nav': Plugins.Navigation,
   'scroll': Plugins.Scroll,
   'touch': Plugins.Touch,
-  'video': Plugins.Video,
-  'youtube': Plugins.YouTube,
   'zoom': Plugins.Zoom
 };
 
