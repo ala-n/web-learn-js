@@ -4,6 +4,8 @@ const gulp = require('gulp');
 const named = require('vinyl-named');
 const plugins = require('gulp-load-plugins')({lazy: false});
 
+const processHTML = require('./gulp-html.processor');
+
 // POSTCSS PLUGINS
 const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
@@ -23,7 +25,7 @@ function cleanTask() {
 
 function buildHTML() {
     return gulp.src(path.join(BUNDLE_DIR, '/*.html'))
-        .pipe(plugins.includeTag())
+        .pipe(processHTML())
         .pipe(gulp.dest(OUTPUT_DIR));
 }
 
