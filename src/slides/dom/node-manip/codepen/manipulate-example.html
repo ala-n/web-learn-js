@@ -1,0 +1,22 @@
+<button class="codepen-trigger" data-codepen-id="codepen-manip-example">Посмотреть в песочнице</button>
+
+<template id="codepen-manip-example">
+    <div class="container">
+        <span class="empty-stub">Empty</span>
+    </div>
+    <button onclick="manip()">Add</button>
+
+    <script class="codepen-js">
+        function manip() {
+            var container = document.querySelector('div.container');
+
+            var stub = container.querySelector('.empty-stub');
+            stub && container.removeChild(stub);
+
+            var row = document.createElement('div');
+            row.textContent = (new Date()).toString();
+
+            container.appendChild(row);
+        }
+    </script>
+</template>

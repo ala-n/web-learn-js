@@ -1,0 +1,1 @@
+var dupNode = node.cloneNode(deep);

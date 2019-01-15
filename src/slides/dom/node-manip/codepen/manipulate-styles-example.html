@@ -1,0 +1,33 @@
+<button class="codepen-trigger" data-codepen-id="codepen-manip-styles-example">Посмотреть в песочнице</button>
+<template id="codepen-manip-styles-example">
+    <div class="container">
+        <button onclick="randomize()"> Set Random Color</button>
+        <div class="content">
+            Hi I'm a simple content!
+        </div>
+    </div>
+    <style class="codepen-css">
+        .container {
+            display: flex;
+            flex-flow: column;
+        }
+
+        .content {
+            padding: 10px;
+        }
+    </style>
+    <script class="codepen-js">
+        const MAX = parseInt('fff', 16);
+
+        function randomize() {
+            let el = document.querySelector('.content');
+
+            let randomColor = Math.floor(Math.random() * MAX);
+            let bgColor = '#' + Number(randomColor).toString(16);
+            let fgColor = '#' + Number(MAX - randomColor).toString(16);
+
+            el.style.backgroundColor = bgColor;
+            el.style.color = fgColor;
+        }
+    </script>
+</template>
