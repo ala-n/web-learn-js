@@ -1,9 +1,14 @@
 import {WebSlide} from './web-slide';
 import DOM from "./utils/dom";
 
+export const NEXT_SLIDE = '$next';
+export const PREV_SLIDE = '$prev';
+
 export class WebSlides extends HTMLElement {
 
     static get is() { return 'web-slides'; }
+
+    private _isMoving = false;
 
     constructor() {
         super();
@@ -17,18 +22,30 @@ export class WebSlides extends HTMLElement {
         this.setAttribute('ready','');
         document.documentElement.classList.add(this.bodyClass);
 
-        // TODO: MutationObserver for content to refresh slide cache
+        this._bindListeners();
     }
     disconnectedCallback() {
-        // TODO: unbind
+        this._unbindListeners();
     }
+
+    private _bindListeners() {
+        window.addEventListener('hashchange', this.onWindowHashChange);
+        window.addEventListener('wheel', this.onMouseWheel);
+        // TODO: MutationObserver for content to refresh slide cache
+    }
+    private _unbindListeners() {
+        window.removeEventListener('hashchange', this.onWindowHashChange);
+        window.removeEventListener('wheel', this.onMouseWheel);
+        // TODO: MutationObserver for content to refresh slide cache
+    }
+
 
     public goTo(slide: number | string | WebSlide) {
         // TODO: refactor or replace with scroll manip. instead of slider approach.
         const target = this.getSlide(slide);
         const current = this.activeSlide;
 
-        if (!target) return;
+        if (!target || this._isMoving) return;
 
         const isNext = this.index(target) > this.index(current);
         const direction = isNext ? 'down' : 'up';
@@ -42,6 +59,8 @@ export class WebSlides extends HTMLElement {
         });
 
         if (!eBefore) return;
+
+        this._isMoving = true;
 
         target.classList.add(siblingClass);
         target.offsetWidth; // force reflow
@@ -57,10 +76,9 @@ export class WebSlides extends HTMLElement {
             target.active = true;
             target.classList.remove(siblingClass);
 
-            DOM.fireEvent(this, 'ws:changed', {
-                currentSlide: target,
-                prevSlide: current
-            });
+            this._isMoving = false;
+
+            this.onSlideChanged(target, current);
         });
     }
     public next() {
@@ -78,9 +96,9 @@ export class WebSlides extends HTMLElement {
         if (typeof slide === 'number') {
             return this.slides[slide];
         }
-        if (slide === 'next' || slide === 'prev') {
+        if (slide === NEXT_SLIDE || slide === PREV_SLIDE) {
             const index = this.index(this.activeSlide);
-            return this.getSlide(slide === 'next' ? index + 1 : index - 1);
+            return this.getSlide(slide === NEXT_SLIDE ? index + 1 : index - 1);
         }
         if (typeof slide === 'string') {
             return this.slides.find((s) => s.route === slide);
@@ -99,6 +117,31 @@ export class WebSlides extends HTMLElement {
 
     get bodyClass(): string {
         return this.getAttribute('body-class') || 'ws-ready';
+    }
+
+
+    private onWindowHashChange = () => {
+        this.goTo(window.location.hash.substr(1));
+    };
+    private onSlideChanged = (current: WebSlide, from: WebSlide) => {
+        window.location.hash = current.route;
+        DOM.fireEvent(this, 'ws:changed', {
+            currentSlide: current,
+            prevSlide: from
+        });
+    };
+    private onMouseWheel = (event: WheelEvent) => {
+        if (this._isMoving) return;
+        const {deltaY: wheelDeltaY} = event;
+
+        if (Math.abs(wheelDeltaY) > 40) {
+            if (wheelDeltaY > 0) {
+                this.next();
+            } else {
+                this.prev();
+            }
+            event.preventDefault();
+        }
     }
 }
 

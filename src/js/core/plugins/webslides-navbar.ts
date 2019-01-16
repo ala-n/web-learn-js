@@ -23,8 +23,8 @@ export class WebSlidesNavbar extends HTMLElement {
 
     public render() {
         render(html`
-            <a href="#next" title="Arrow Keys" class="arrow-next">↓</a>
-            <a href="#prev" title="Arrow Keys" class="arrow-prev">↑</a>
+            <a is="ws-route-link" href="#next" title="Arrow Keys" class="arrow-next">↓</a>
+            <a is="ws-route-link" href="#prev" title="Arrow Keys" class="arrow-prev">↑</a>
             <span class="counter">
               <a href="#${this._owner.activeIndex}" title="View all slides" class="counter-link">${this._owner.activeIndex + 1} / ${this._owner.count}</a>
             </span>

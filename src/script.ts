@@ -14,3 +14,5 @@
 
 import './js/core/web-slides';
 import './js/core/plugins/webslides-navbar';
+
+import './js/core/ws-route-link';
