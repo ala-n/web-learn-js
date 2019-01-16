@@ -4,8 +4,6 @@ import {html, render} from 'lit-html';
 export class WebSlidesNavbar extends HTMLElement {
     public static get is() { return 'web-slides-nav'; }
 
-    public static get ACTIVE_CLASS() { return 'active'; }
-
     private _owner: WebSlides;
 
     constructor() {
@@ -16,17 +14,22 @@ export class WebSlidesNavbar extends HTMLElement {
         this._owner = this.closest(WebSlides.is) as WebSlides;
         this.render();
 
-        this._owner.addEventListener('ws:changed', () => this.render());// TODO: removable listener
+        this._owner.addEventListener('ws:changed', this.onStateChanged);
     }
     public disconnectedCallback() {
+        this._owner.removeEventListener('ws:changed', this.onStateChanged);
     }
+
+    private onStateChanged = () => {
+        this.render();
+    };
 
     public render() {
         render(html`
             <a is="ws-route-link" href="#next" title="Arrow Keys" class="arrow-next">↓</a>
             <a is="ws-route-link" href="#prev" title="Arrow Keys" class="arrow-prev">↑</a>
             <span class="counter">
-              <a href="#${this._owner.activeIndex}" title="View all slides" class="counter-link">${this._owner.activeIndex + 1} / ${this._owner.count}</a>
+              <a href="#${this._owner.activeIndex + 1}" title="View all slides" class="counter-link">${this._owner.activeIndex + 1} / ${this._owner.count}</a>
             </span>
         `, this);
     }

@@ -6,6 +6,9 @@
 }
 
 web-slides {
+  display: block;
+  position: relative;
+
   height: 100vh;
 
   overflow: auto;
@@ -29,12 +32,13 @@ web-slides {
     page-break-after: always;
     word-wrap: break-word;
 
-    transition: transform 1s ease-in-out;
+    transition: transform 0.5s ease-in-out, opacity 0.5s linear;
   }
 
-  &[ready] section,
-  &[ready] .slide {
-    display: none;
+  &[ready] {
+    section, .slide {
+      display: none;
+    }
   }
 
   .slide.next,
@@ -51,22 +55,24 @@ web-slides {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
   }
 
   .slide.active,
   .slide.prev.up,
   .slide.next.down {
     transform: translateY(0);
+    opacity: 1;
   }
 
   .slide.next,
   .slide.active.up{
     transform: translateY(100vh);
+    opacity: 0;
   }
   .slide.prev,
   .slide.active.down {
     transform: translateY(-100vh);
+    opacity: 0;
   }
 }
 

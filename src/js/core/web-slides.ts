@@ -9,6 +9,8 @@ export class WebSlides extends HTMLElement {
     static get is() { return 'web-slides'; }
 
     private _isMoving = false;
+    private _slidesCache: WebSlide[];
+    private _contentObserver: MutationObserver;
 
     constructor() {
         super();
@@ -23,6 +25,8 @@ export class WebSlides extends HTMLElement {
         document.documentElement.classList.add(this.bodyClass);
 
         this._bindListeners();
+
+        this.onWindowHashChange();
     }
     disconnectedCallback() {
         this._unbindListeners();
@@ -31,23 +35,25 @@ export class WebSlides extends HTMLElement {
     private _bindListeners() {
         window.addEventListener('hashchange', this.onWindowHashChange);
         window.addEventListener('wheel', this.onMouseWheel);
-        // TODO: MutationObserver for content to refresh slide cache
+
+        this._contentObserver = new MutationObserver(this.onContentMutation);
+        this._contentObserver.observe(this, {childList: true});
     }
     private _unbindListeners() {
         window.removeEventListener('hashchange', this.onWindowHashChange);
         window.removeEventListener('wheel', this.onMouseWheel);
-        // TODO: MutationObserver for content to refresh slide cache
+
+        this._contentObserver.disconnect();
     }
 
 
     public goTo(slide: number | string | WebSlide) {
-        // TODO: refactor or replace with scroll manip. instead of slider approach.
         const target = this.getSlide(slide);
         const current = this.activeSlide;
 
         if (!target || this._isMoving) return;
 
-        const isNext = this.index(target) > this.index(current);
+        const isNext = this.indexOf(target) > this.indexOf(current);
         const direction = isNext ? 'down' : 'up';
         const siblingClass = isNext ? 'next' : 'prev';
 
@@ -88,7 +94,14 @@ export class WebSlides extends HTMLElement {
         this.goTo('$prev');
     }
 
-    public index(slide: WebSlide) {
+    public get activeIndex() {
+        return this.indexOf(this.activeSlide);
+    }
+    public get activeSlide() {
+        return this.slides.find((slide) => slide.active);
+    }
+
+    public indexOf(slide: WebSlide) {
         return this.slides.indexOf(slide);
     }
     public getSlide(slide: string | number | WebSlide): WebSlide {
@@ -97,7 +110,7 @@ export class WebSlides extends HTMLElement {
             return this.slides[slide];
         }
         if (slide === NEXT_SLIDE || slide === PREV_SLIDE) {
-            const index = this.index(this.activeSlide);
+            const index = this.indexOf(this.activeSlide);
             return this.getSlide(slide === NEXT_SLIDE ? index + 1 : index - 1);
         }
         if (typeof slide === 'string') {
@@ -105,21 +118,29 @@ export class WebSlides extends HTMLElement {
         }
 
     }
-    public get activeSlide() {
-        return this.slides.find((slide) => slide.active);
-    }
-    public get activeIndex() { return this.index(this.activeSlide); }
-    public get slides(): WebSlide[]{
-        // TODO: cache, do grabSlides utill and use cache.
-        return Array.from(this.childNodes).filter((child) => (child instanceof WebSlide)) as WebSlide[];
-    }
+
     public get count() { return this.slides.length; }
-
-    get bodyClass(): string {
-        return this.getAttribute('body-class') || 'ws-ready';
+    public get slides(): WebSlide[]{
+        if (!this._slidesCache) {
+            const childNodes = Array.from(this.childNodes);
+            this._slidesCache = childNodes.filter((child) => (child instanceof WebSlide)) as WebSlide[];
+        }
+        return this._slidesCache;
     }
 
+    public invalidateCaches() {
+        this._slidesCache = null;
+        // TODO: fire statechange event
+    }
 
+    public get isTopScroll() {
+        return this.scrollTop < 10;
+    }
+    public get isBottomScroll() {
+        return this.scrollHeight - (this.scrollTop + this.clientHeight) < 10;
+    }
+
+    // Listeners
     private onWindowHashChange = () => {
         this.goTo(window.location.hash.substr(1));
     };
@@ -132,16 +153,30 @@ export class WebSlides extends HTMLElement {
     };
     private onMouseWheel = (event: WheelEvent) => {
         if (this._isMoving) return;
-        const {deltaY: wheelDeltaY} = event;
+        const {deltaY: wheelDelta} = event;
+        const goNext = wheelDelta > 0;
 
-        if (Math.abs(wheelDeltaY) > 40) {
-            if (wheelDeltaY > 0) {
+        if (Math.abs(wheelDelta) > 40) {
+            if (goNext && this.isBottomScroll) {
                 this.next();
-            } else {
-                this.prev();
+                event.preventDefault();
             }
-            event.preventDefault();
+            if (!goNext && this.isTopScroll){
+                this.prev();
+                event.preventDefault();
+            }
         }
+    };
+    private onContentMutation = (records: MutationRecord[]) => {
+        const changed = records.some((r) => r.target instanceof WebSlide);
+        if (changed) {
+            this.invalidateCaches();
+        }
+    };
+
+    // Simple getters/setters
+    get bodyClass(): string {
+        return this.getAttribute('body-class') || 'ws-ready';
     }
 }
 
