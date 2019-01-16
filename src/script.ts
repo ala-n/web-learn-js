@@ -12,5 +12,5 @@
 //     slideOffset: 80 // def: 50
 // });
 
-
-import './js/core/web-slide-page';
+import './js/core/web-slides';
+import './js/core/plugins/webslides-navbar';

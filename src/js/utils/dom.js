@@ -1,5 +1,3 @@
-import WSCustomEvent from './custom-event';
-
 let transitionEvent = '';
 let animationEvent = '';
 
@@ -147,7 +145,7 @@ export default class DOM {
    * to the event.
    */
   static fireEvent(target, eventType, eventInfo = {}) {
-    const event = new WSCustomEvent(eventType, {
+    const event = new CustomEvent(eventType, {
       detail: eventInfo,
       bubbles: true
     });

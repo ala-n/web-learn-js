@@ -1,0 +1,75 @@
+web-slides-nav {
+  position: fixed;
+  width: 24.4rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  opacity: 0;
+  animation: fadeIn 8s;
+
+  z-index: 4;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .counter {
+    display: block;
+    position: relative;
+    width: 10rem;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    line-height: 4.8rem;
+    text-align: center;
+
+    color: #abc; // TODO: variable
+
+    .counter-link:hover {
+      padding: .8rem;
+    }
+  }
+
+  a.arrow-next,
+  a.arrow-prev {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    border-radius: .4rem;
+    padding: .8rem;
+
+    cursor: pointer;
+    font-size: 2.4rem;
+    text-align: center;
+  }
+
+  a.arrow-next {
+    right: 3.2rem;
+  }
+  a.arrow-prev {
+    left: 3.2rem;
+  }
+
+  a:hover {
+    // TODO: color vars
+    background-color: rgba(0, 10, 40, 0.8);
+    color: #fff;
+  }
+
+
+  @media (max-width: 1024px) {
+    background: url("../images/swipe.svg") no-repeat center top;
+    background-size: 4.8rem;
+    animation: fadeIn 6s;
+
+    .arrow-prev, .arrow-next, .counter {
+      display: none;
+    }
+  }
+}
+

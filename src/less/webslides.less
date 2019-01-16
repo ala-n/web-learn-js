@@ -51,31 +51,6 @@ footer:after,
 /*=========================================
 1. Base --> Baseline: 8px = .8rem
 =========================================== */
-/* -- Disable elastic scrolling/bounce:
-webslides.js will add .ws-ready automatically. Don't worry :) -- */
-.ws-ready,
-.ws-ready body {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.ws-ready.ws-ready-zoom {
-  overflow: visible; }
-  .ws-ready.ws-ready-zoom body {
-    overflow: auto; }
-
-#webslides {
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-  height: 100vh;
-  overflow: auto;
-  overflow-x: hidden;
-}
-
-#webslides::-webkit-scrollbar {
-  display: none;
-}
 
 li li {
   margin-left: 1.6rem; }
@@ -115,19 +90,20 @@ nav a[rel='external'] em,
   @media (min-width: 1024px) {
     width: 90%;
   }
-}
 
-
-.wrap > *:last-child{
-  margin-bottom: 96px;
+  & > *:last-child{
+    margin-bottom: 96px;
+  }
 }
 
 .frame,
 .shadow {
-  padding: 2.4rem; }
+  padding: 2.4rem;
+}
 
 .radius {
-  border-radius: .4rem; }
+  border-radius: .4rem;
+}
 
 .alignright {
   float: right; }
@@ -204,7 +180,6 @@ code {
   padding: .4rem; }
 
 @import "./utils/animation.less";
-
 
 /*=== 1.4. Basic Grid (Flexible blocks)
 Auto-fill & Equal height === */
@@ -675,25 +650,6 @@ figure[class*='text-pull-'] {
   margin-top: .8rem;
   padding-top: 0; }
 
-/* -- Interviews (Questions & Answers)  --- */
-/* -- <dl class="text-interview">
-<dt>name</dt>
-<dd><p>question or answer</p>
-</dd>
---- */
-.text-interview dt {
-  font-weight: 600;
-  margin-bottom: 0;
-  text-transform: uppercase; }
-
-@media (min-width: 1024px) {
-  .text-interview dt {
-    margin-left: -34%;
-    position: absolute;
-    text-align: right;
-    white-space: nowrap;
-    width: 30%; } }
-
 /* -- Info Messages (error, warning, success... -- */
 .text-info {
   font-size: 1.6rem;
@@ -703,11 +659,6 @@ figure[class*='text-pull-'] {
 @import "./header.less";
 /* 4. Footer */
 @import "./footer.less";
-
-/*============================================
-5. SLIDES (Full Screen)
-Vertically and horizontally centered
-============================================== */
 
 @import "./background.less";
 
@@ -722,33 +673,6 @@ section .light,
 section .dark {
   -webkit-animation-duration: 0s;
           animation-duration: 0s; }
-
-/*=== Section = Slide === */
-section, .slide {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  min-height: 100vh;
-  /*Fullscreen*/
-  /* Prototyping? min-height: 720px (Baseline: 8px = .8rem)*/
-  padding: 2.4rem;
-  /*Fixed/Visible header? padding-top: 12rem; */
-  page-break-after: always;
-  position: relative;
-  word-wrap: break-word;
-
-  @media (min-width: 1024px) {
-    padding-bottom: 4rem;
-    padding-top: 4rem;
-  }
-}
 
 /*slide with no padding (full card, .embed youtube video...) */
 .fullscreen {
@@ -816,150 +740,6 @@ form[class*='bg-'] {
 //@import "./tables.less";
 /* Forms */
 @import "./forms.less";
-
-/*==============================================
-18. Slides Index: Thumbnails navigation gallery
-================================================ */
-#webslides-zoomed {
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  min-height: 100vh;
-  position: relative;
-  z-index: 2; }
-  #webslides-zoomed.disabled {
-    left: -100000px;
-    position: fixed;
-  }
-  #webslides-zoomed .slide {
-    height: 400%;
-    width: 400%; }
-    @media screen and (orientation: portrait), screen and (max-width: 768px) and (orientation: landscape) {
-      #webslides-zoomed .slide {
-        height: 200%;
-        width: 200%; } }
-    @media (max-aspect-ratio: 2 / 3) {
-      #webslides-zoomed .slide {
-        height: 200%;
-        width: 200%; } }
-  @media (min-width: 1024px) {
-    #webslides-zoomed > .wrap {
-      padding-bottom: 12rem;
-      padding-top: 12rem; } }
-  #webslides-zoomed > .wrap > .grid > .column {
-    -ms-flex-item-align: auto;
-        align-self: auto;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 auto;
-            flex: 0 1 auto;
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
-    position: relative;
-    width: 25%; }
-    @media screen and (max-width: 567px) {
-      #webslides-zoomed > .wrap > .grid > .column {
-        width: 100%; } }
-    @media screen and (min-width: 568px) and (max-width: 1024px) {
-      #webslides-zoomed > .wrap > .grid > .column {
-        width: 50%; } }
-    @media screen and (max-width: 567px) and (orientation: portrait) {
-      #webslides-zoomed > .wrap > .grid > .column {
-        width: 100%; } }
-    #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom {
-      border-radius: .3rem;
-      display: inline-block;
-      height: 25vh;
-      overflow: hidden;
-      position: relative;
-      -webkit-transition: .3s;
-      transition: .3s; }
-      @media screen and (max-width: 567px) {
-        #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom {
-          height: 50vh; } }
-      @media screen and (min-width: 568px) and (max-width: 1023px) {
-        #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom {
-          height: 33vh; } }
-      @media screen and (orientation: portrait) {
-        #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom {
-          height: 50vw; } }
-      #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom:hover {
-        -webkit-transform: scale(1.02);
-                transform: scale(1.02);
-        z-index: 2; }
-      #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom.current {
-        -webkit-transform: scale(1.08);
-                transform: scale(1.08); }
-    #webslides-zoomed > .wrap > .grid > .column > .wrap-zoom > .zoom-layer {
-      background: transparent;
-      cursor: pointer;
-      height: 100%;
-      position: absolute;
-      width: 100%; }
-  #webslides-zoomed .column > .wrap-zoom > .slide {
-    clip: rect(0 auto auto 0);
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-    left: 0;
-    position: absolute;
-    top: 0;
-    -webkit-transform: scale(0.25) translate(-150%, -150vh);
-            transform: scale(0.25) translate(-150%, -150vh); }
-    @media screen and (orientation: portrait), screen and (max-width: 768px) and (orientation: landscape) {
-      #webslides-zoomed .column > .wrap-zoom > .slide {
-        -webkit-transform: scale(0.5) translate(-50%, -50%);
-                transform: scale(0.5) translate(-50%, -50%); } }
-    @media (max-aspect-ratio: 2 / 3) {
-      #webslides-zoomed .column > .wrap-zoom > .slide {
-        -webkit-transform: scale(0.5) translate(-50%, -50%);
-                transform: scale(0.5) translate(-50%, -50%); } }
-  #webslides-zoomed .column {
-    opacity: 0;
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-    -webkit-transition: opacity .4s, -webkit-transform .4s;
-    transition: opacity .4s, -webkit-transform .4s;
-    transition: opacity .4s, transform .4s;
-    transition: opacity .4s, transform .4s, -webkit-transform .4s;
-    -webkit-transition-delay: .2s;
-            transition-delay: .2s; }
-  #webslides-zoomed.in .column {
-    opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1); }
-
-.text-slide-number {
-  display: inline-block;
-  margin: .8rem auto;
-  text-align: center; }
-
-#webslides {
-  -webkit-transition: -webkit-filter .3s;
-  transition: -webkit-filter .3s;
-  transition: filter .3s;
-  transition: filter .3s, -webkit-filter .3s; }
-  #webslides.disabled, #webslides.zooming {
-    position: fixed;
-    width: 100%;
-    z-index: 0; }
-  #webslides.disabled {
-    /*
-    filter: blur(10px);
-    transform: scale(1.1);
-    */
-    /* Blur makes scroll no accesible */
-    width: ~'calc(100% - 10px)';
-  }
 
 /*=========================================
 19. Colors
@@ -1170,38 +950,5 @@ figure[class*='text-pull-'] {
 
 /* -- Text shadow  -- */
 .text-shadow {
-  text-shadow: 0 0 40px rgba(0, 0, 0, 0.5); }
-
-.code-comment {
-  color: rgba(70, 170, 130, 0.9);
-  text-shadow: none; }
-
-
-/*============================
-Slides Index
-============================== */
-#webslides-zoomed {
-  background: rgba(0, 10, 40, 0.8);
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
 }
-
-#webslides-zoomed .column > .wrap-zoom {
-  background-color: #f7f9fb;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.04);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.04);
-  color: #333;
-}
-
-#webslides-zoomed .column > .wrap-zoom:hover {
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.08);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.08);
-}
-
-#webslides-zoomed .column > .wrap-zoom.current {
-  border: 0.6rem solid rgba(0, 20, 255, 0.2);
-}
-
-.text-slide-number {
-  color: #abc;
-}
-
-@import "./core/nav-grid.less";
