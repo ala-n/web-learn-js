@@ -25,11 +25,13 @@ export class WebSlidesNavbar extends HTMLElement {
     };
 
     public render() {
+        const activeIndex = this._owner.activeSlide.index + 1;
+        const count = this._owner.count;
         render(html`
             <a is="ws-route-link" href="#next" title="Arrow Keys" class="arrow-next">↓</a>
             <a is="ws-route-link" href="#prev" title="Arrow Keys" class="arrow-prev">↑</a>
             <span class="counter">
-              <a href="#${this._owner.activeIndex + 1}" title="View all slides" class="counter-link">${this._owner.activeIndex + 1} / ${this._owner.count}</a>
+              <a href="#landing" title="View all slides" class="counter-link">${activeIndex} / ${count}</a>
             </span>
         `, this);
     }

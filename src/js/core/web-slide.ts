@@ -1,11 +1,9 @@
-import {simpleSequence} from "./utils/uiid";
-
-const slideIDSequence = simpleSequence(1);
-
 export class WebSlide extends HTMLElement {
     public static get is() { return 'web-slide'; }
 
     public static get ACTIVE_CLASS() { return 'active'; }
+
+    _index: number;
 
     constructor() {
         super();
@@ -13,9 +11,6 @@ export class WebSlide extends HTMLElement {
 
     public connectedCallback() {
         this.classList.add('slide');
-        if (!this.route) {
-            this.route = String(slideIDSequence.next().value);
-        }
     }
     public disconnectedCallback() {
 
@@ -28,11 +23,31 @@ export class WebSlide extends HTMLElement {
         this.classList.toggle(WebSlide.ACTIVE_CLASS, val);
     }
 
-    public get route() {
-        return this.getAttribute('route');
+    public get slideRoute() {
+        return this.getAttribute('slide-route');
     }
-    public set route(routeName: string) {
-        this.setAttribute('route', routeName);
+    public set slideRoute(routeName: string) {
+        this.setAttribute('slide-route', routeName);
+    }
+
+    public get slideTitle() {
+        return this.getAttribute('slide-title');
+    }
+    public set slideTitle(title: string) {
+        this.setAttribute('slide-title', title);
+    }
+
+    public get route() {
+        const r = this.slideRoute;
+        return r ? r : String(this.index + 1);
+    }
+
+    // TMP
+    public get index() : number {
+        return this._index;
+    }
+    public set index(i: number) {
+        this._index = i;
     }
 }
 

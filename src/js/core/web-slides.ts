@@ -46,14 +46,13 @@ export class WebSlides extends HTMLElement {
         this._contentObserver.disconnect();
     }
 
-
     public goTo(slide: number | string | WebSlide) {
         const target = this.getSlide(slide);
         const current = this.activeSlide;
 
         if (!target || this._isMoving) return;
 
-        const isNext = this.indexOf(target) > this.indexOf(current);
+        const isNext = target.index > current.index;
         const direction = isNext ? 'down' : 'up';
         const siblingClass = isNext ? 'next' : 'prev';
 
@@ -94,23 +93,17 @@ export class WebSlides extends HTMLElement {
         this.goTo('$prev');
     }
 
-    public get activeIndex() {
-        return this.indexOf(this.activeSlide);
-    }
     public get activeSlide() {
         return this.slides.find((slide) => slide.active);
     }
 
-    public indexOf(slide: WebSlide) {
-        return this.slides.indexOf(slide);
-    }
     public getSlide(slide: string | number | WebSlide): WebSlide {
         if (slide instanceof WebSlide) return slide;
         if (typeof slide === 'number') {
             return this.slides[slide];
         }
         if (slide === NEXT_SLIDE || slide === PREV_SLIDE) {
-            const index = this.indexOf(this.activeSlide);
+            const index = this.activeSlide.index;
             return this.getSlide(slide === NEXT_SLIDE ? index + 1 : index - 1);
         }
         if (typeof slide === 'string') {
@@ -119,11 +112,16 @@ export class WebSlides extends HTMLElement {
 
     }
 
-    public get count() { return this.slides.length; }
-    public get slides(): WebSlide[]{
+    public get count() {
+        return this.slides.length;
+    }
+    public get slides(): WebSlide[] {
         if (!this._slidesCache) {
             const childNodes = Array.from(this.childNodes);
             this._slidesCache = childNodes.filter((child) => (child instanceof WebSlide)) as WebSlide[];
+            this._slidesCache.forEach((slide, index) => {
+               slide.index = index;
+            });
         }
         return this._slidesCache;
     }
@@ -142,10 +140,11 @@ export class WebSlides extends HTMLElement {
 
     // Listeners
     private onWindowHashChange = () => {
-        this.goTo(window.location.hash.substr(1));
+        let hash = window.location.hash.substr(1);
+        this.goTo(isNaN(+hash) ? hash : (+hash - 1));
     };
     private onSlideChanged = (current: WebSlide, from: WebSlide) => {
-        window.location.hash = current.route;
+        WebSlides.updateHash(current);
         DOM.fireEvent(this, 'ws:changed', {
             currentSlide: current,
             prevSlide: from
@@ -177,6 +176,12 @@ export class WebSlides extends HTMLElement {
     // Simple getters/setters
     get bodyClass(): string {
         return this.getAttribute('body-class') || 'ws-ready';
+    }
+
+    public static updateHash(slide: WebSlide) {
+        history.pushState({
+            slideRoute: slide.route
+        }, `Slide ${slide.title}`, `#${slide.route}`);
     }
 }
 
