@@ -4,6 +4,9 @@ import DOM from "./utils/dom";
 export const NEXT_SLIDE = '$next';
 export const PREV_SLIDE = '$prev';
 
+const SCROLL_TOLERANCE = 5; // px
+const WHEEL_TOLERANCE = 40;
+
 export class WebSlides extends HTMLElement {
 
     static get is() { return 'web-slides'; }
@@ -132,10 +135,10 @@ export class WebSlides extends HTMLElement {
     }
 
     public get isTopScroll() {
-        return this.scrollTop < 10;
+        return this.scrollTop < SCROLL_TOLERANCE;
     }
     public get isBottomScroll() {
-        return this.scrollHeight - (this.scrollTop + this.clientHeight) < 10;
+        return this.scrollHeight - (this.scrollTop + this.clientHeight) < SCROLL_TOLERANCE;
     }
 
     // Listeners
@@ -155,7 +158,7 @@ export class WebSlides extends HTMLElement {
         const {deltaY: wheelDelta} = event;
         const goNext = wheelDelta > 0;
 
-        if (Math.abs(wheelDelta) > 40) {
+        if (Math.abs(wheelDelta) > WHEEL_TOLERANCE) {
             if (goNext && this.isBottomScroll) {
                 this.next();
                 event.preventDefault();

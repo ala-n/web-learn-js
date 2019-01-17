@@ -1,4 +1,4 @@
-import {WebSlides} from "../web-slides";
+import {WebSlides} from "./web-slides";
 import {html, render} from 'lit-html';
 
 export class WebSlidesNavbar extends HTMLElement {

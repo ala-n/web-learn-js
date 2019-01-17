@@ -31,8 +31,10 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#333333">
 
+    <script src="script.js" defer></script>
 </head>
 <body>
+
 <header role="banner">
     <div class="landing-bg"></div>
     <nav role="navigation" class="navbar">
@@ -56,7 +58,7 @@
 </header>
 
 <main>
-    <web-slides class="vertical" role="article">
+    <web-slides role="article">
         <include src="./slides/landing.html"></include>
 
         <include src="./slides/links.html"></include>
@@ -77,19 +79,13 @@
 </main>
 
 <dialog id="test-dialog">
-    <form id="test-form">
-    </form>
+    <form id="test-form"></form>
 </dialog>
-
-<!-- Scripts -->
-<script src="script.js"></script>
-
-<!--<script src="highlight.pack.js"></script>-->
-<!--<script>hljs.configure({classPrefix: 'code-'}); hljs.initHighlightingOnLoad();</script>-->
 
 <form method="post" action="https://codepen.io/pen/define" class="hidden" target="_blank">
     <input type="hidden" name="data"/>
     <input type="submit"/>
 </form>
+
 </body>
 </html>
