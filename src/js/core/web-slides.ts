@@ -1,3 +1,4 @@
+import 'hammerjs';
 import {WebSlide} from './web-slide';
 import DOM from "./utils/dom";
 
@@ -9,11 +10,13 @@ const WHEEL_TOLERANCE = 40;
 
 export class WebSlides extends HTMLElement {
 
+
     static get is() { return 'web-slides'; }
 
     private _isMoving = false;
     private _slidesCache: WebSlide[];
     private _contentObserver: MutationObserver;
+    private _touchManager: HammerManager;
 
     constructor() {
         super();
@@ -39,6 +42,12 @@ export class WebSlides extends HTMLElement {
         window.addEventListener('hashchange', this.onWindowHashChange);
         window.addEventListener('wheel', this.onMouseWheel);
 
+        this._touchManager = new Hammer.Manager(this);
+        this._touchManager.add(new Hammer.Swipe());
+
+        this._touchManager.on('swipeup', () => this.next());
+        this._touchManager.on('swipedown', () => this.prev());
+
         this._contentObserver = new MutationObserver(this.onContentMutation);
         this._contentObserver.observe(this, {childList: true});
     }
@@ -46,6 +55,7 @@ export class WebSlides extends HTMLElement {
         window.removeEventListener('hashchange', this.onWindowHashChange);
         window.removeEventListener('wheel', this.onMouseWheel);
 
+        this._touchManager.destroy();
         this._contentObserver.disconnect();
     }
 
