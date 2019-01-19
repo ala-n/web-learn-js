@@ -22,15 +22,7 @@
 /* 0. CSS Reset & Normalize */
 @import "../core/utils/reset.less";
 
-/*=== Clearing === */
-.clear-fix:before,
-.clear-fix:after {
-  content: '';
-  display: table;
-}
-.clear-fix:after {
-  clear: both;
-}
+
 
 /*=========================================
 1. Base --> Baseline: 8px = .8rem
@@ -810,9 +802,4 @@ figure[class*='text-pull-'] {
   margin: .8rem auto;
   text-align: center;
   color: #abc;
-}
-
-/* Print overrides */
-.print-only {
-  display: none;
 }

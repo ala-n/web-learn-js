@@ -1,4 +1,9 @@
 @media print {
+	@page {
+		margin: .5cm;
+		size: A4 landscape;
+	}
+
 	.print-only {
 		display: block;
 	}
@@ -7,10 +12,7 @@
 		animation: none !important;
 	}
 
-	#webslides-zoomed {
-		display: none;
-	}
-
+	// TODO ?
 	.wrap > :last-child {
 		margin-bottom: 6px;
 	}
@@ -23,13 +25,6 @@
 		color: #00a3ff !important;
 		text-decoration: underline;
 	}
-}
-
-@media print {
-	@page {
-		margin: .5cm;
-		size: A4 landscape;
-	}
 
 	* {
 		background: transparent !important;
@@ -41,19 +36,18 @@
 
 	html,
 	body,
-	#webslides {
+	web-slides {
 		height: auto !important;
 		overflow: auto !important;
 		width: auto !important;
 	}
 
-	#webslides {
+	web-slides {
 		overflow-x: auto !important;
 		overflow-y: auto !important;
 	}
 
-	section,
-	.slide {
+	section, .slide {
 		display: -webkit-box !important;
 		display: -ms-flexbox !important;
 		display: flex !important;
@@ -70,8 +64,7 @@
 		page-break-inside: avoid;
 	}
 
-	#counter,
-	#navigation {
+	web-slides-nav {
 		display: none;
 	}
 }
