@@ -1,0 +1,21 @@
+@import "list";
+
+.primary-list {
+  li {
+    font-size: 3rem;
+    line-height: 4rem;
+
+    a {
+      color: black;
+      &:hover, &:active {
+        color: #00a3ff;
+        text-decoration: none;
+      }
+      &:focus {
+        color: #00a3ff;
+        outline: none;
+        text-decoration: underline;
+      }
+    }
+  }
+}

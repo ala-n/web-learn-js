@@ -1,0 +1,25 @@
+// Zero fix
+.no-padding {
+  padding: 0;
+}
+.no-margin {
+  margin: 0;
+}
+
+// Floats
+.clear-fix {
+  &::before, &::after {
+    content: '';
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}

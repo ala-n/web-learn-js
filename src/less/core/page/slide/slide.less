@@ -1,0 +1,55 @@
+section {
+  .background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    -webkit-animation-duration: 0s;
+    animation-duration: 0s;
+  }
+
+  /* Fade transition to all slides. */
+  * {
+    -webkit-animation: fadeIn .6s ease-in-out;
+    animation: fadeIn .6s ease-in-out;
+  }
+}
+
+
+/*=== WRAP/CONTAINER === */
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  z-index: 2;
+
+  @media (min-width: 1024px) {
+    width: 90%;
+  }
+
+  & > *:last-child{
+    margin-bottom: 0;
+  }
+}
+
+/* slide alignment */
+.slide-top {
+  justify-content: flex-start;
+}
+.slide-bottom {
+  justify-content: flex-end;
+}
+/*slide with no padding (full card, .embed youtube video...) */
+.fullscreen {
+  padding: 0;
+}

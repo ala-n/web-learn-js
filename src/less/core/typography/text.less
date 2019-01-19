@@ -1,0 +1,126 @@
+/* -- h1,h2... Promo/Landings -- */
+.text-landing {
+  letter-spacing: .4rem;
+  text-transform: uppercase;
+
+  @media (min-width: 768px) {
+    letter-spacing: 1.6rem;
+  }
+}
+
+/* -- Subtitle (Before h1, h2) p.subtitle + h1/h2 */
+.text-subtitle {
+  letter-spacing: .2rem;
+  margin-bottom: 0;
+  text-transform: uppercase;
+
+  p.text-subtitle {
+    font-size: 1.6rem;
+    svg {
+      vertical-align: text-top;
+    }
+  }
+
+  & + p {
+    margin-top: 3.2rem;
+  }
+}
+
+.text-serif {
+  font-family: 'Maitree', times, serif;
+}
+
+/* -- Heading with border -- */
+.text-context {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+
+    height: .2rem;
+    width: 12rem;
+    margin-bottom: .6rem;
+
+    background-color: rgba(0, 20, 80, 0.2);
+  }
+
+  &.text-uppercase {
+    letter-spacing: .1rem;
+  }
+
+  .column &:before {
+    width: 100%;
+  }
+}
+
+/* -- Numbers (results, sales... 23,478,289 iphones) -- */
+.text-data {
+  font-size: 5rem;
+  line-height: 6rem;
+  margin-bottom: .8rem;
+
+  @media (min-width: 768px) {
+    font-size: 10rem;
+    line-height: 11rem;
+  }
+}
+
+/* -- Info Messages (error, warning, success... -- */
+.text-info {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+/* -- Separator/Symbols (stars ***...) -- */
+.text-symbols {
+  font-weight: 600;
+  letter-spacing: .8rem;
+  text-align: center;
+}
+
+.text-separator {
+  margin-top: 2.4rem;
+
+  &:before {
+    position: absolute;
+    content: '';
+
+    width: 16%;
+    height: .4rem;
+
+    left: 0;
+    margin-top: -1.6rem;
+
+    background-color: rgba(170, 0, 0, 0.8);
+  }
+
+  @media (min-width: 568px) {
+    width: 80%;
+
+    margin-left: 20%;
+    margin-top: 0;
+
+    &:before {
+      margin-top: 1.2rem;
+    }
+  }
+}
+
+.text-shadow {
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+.text-dangerous {
+  color: red;
+  font-weight: bold;
+}
+.text-contrast-white {
+  text-shadow: 0 0 15px #fff;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-lowercase {
+  text-transform: lowercase;
+}
