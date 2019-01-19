@@ -30,7 +30,7 @@ function buildHTML() {
 }
 
 function buildLess(prod) {
-    let tmp = gulp.src(path.join(BUNDLE_DIR, '/*.less'));
+    let tmp = gulp.src(path.join(BUNDLE_DIR, 'less/*.less'));
     tmp = prod ? tmp : tmp.pipe(plugins.sourcemaps.init())
     tmp = tmp.pipe(plugins.less())
         .pipe(plugins.postcss([
@@ -48,7 +48,7 @@ function buildLess(prod) {
 }
 
 function buildJS(prod) {
-    return gulp.src([path.join(BUNDLE_DIR, '/*.ts'), path.join(BUNDLE_DIR, '/*.js')])
+    return gulp.src(path.join(BUNDLE_DIR, 'js/*.ts'))
         .pipe(named())
         .pipe(webpackStream(prod ? wpConfig.getProdConfig() : wpConfig.getDevConfig()))
         .pipe(gulp.dest(OUTPUT_DIR));

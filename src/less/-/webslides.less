@@ -20,7 +20,7 @@
   19. Colors
 ----------------------------------------------------------------------------------- */
 /* 0. CSS Reset & Normalize */
-@import "./utils/reset.less";
+@import "../core/utils/reset.less";
 
 /*=== Clearing === */
 .clear-fix:before,
@@ -166,7 +166,7 @@ pre {
 code {
   padding: .4rem; }
 
-@import "./utils/animation.less";
+@import "../core/utils/animation.less";
 
 /*=== 1.4. Basic Grid (Flexible blocks)
 Auto-fill & Equal height === */
@@ -613,11 +613,11 @@ figure[class*='text-pull-'] {
   line-height: 2.4rem; }
 
 /* 3. Header */
-@import "./header.less";
+@import "header.less";
 /* 4. Footer */
-@import "./footer.less";
+@import "footer.less";
 
-@import "./background.less";
+@import "background.less";
 
 /* Fade transition to all slides.
 * = All HTML elements will have those styles.*/
@@ -685,12 +685,10 @@ Aligned items [class*="content-"]=== */
     clear: both;
     margin-top: 6.4rem; } }
 
-@import "./core/nav-control.less";
-
 /* Tables */
 //@import "./tables.less";
 /* Forms */
-@import "./forms.less";
+@import "forms.less";
 
 /*=========================================
 19. Colors
@@ -805,4 +803,16 @@ figure[class*='text-pull-'] {
 /* -- Text shadow  -- */
 .text-shadow {
   text-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.text-slide-number {
+  display: inline-block;
+  margin: .8rem auto;
+  text-align: center;
+  color: #abc;
+}
+
+/* Print overrides */
+.print-only {
+  display: none;
 }

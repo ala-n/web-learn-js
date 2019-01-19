@@ -1,4 +1,12 @@
 (function () {
+
+	const template = `
+		<form method="post" action="https://codepen.io/pen/define" class="hidden" target="_blank">
+			<input type="hidden" name="data"/>
+			<input type="submit"/>
+		</form>
+	`;
+
 	function openCodepen(title, htmlCode, cssCode, jsCode) {
 		const form = document.querySelector('form[action="https://codepen.io/pen/define"]');
 		if (form) {

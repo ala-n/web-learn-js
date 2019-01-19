@@ -1,8 +1,8 @@
 // DEPENDENCIES
 const gulp = require('gulp');
-const tasks = require('./build-config/gulp-tasks');
+const tasks = require('./build/gulp-tasks');
 
-const CONSTANTS = require('./build-config/paths-config.json');
+const CONSTANTS = require('./build/paths-config.json');
 
 gulp.task('gzip', tasks.gzip);
 gulp.task('clean', tasks.cleanTask);
