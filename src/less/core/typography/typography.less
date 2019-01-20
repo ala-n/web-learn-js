@@ -31,9 +31,37 @@ body, textarea {
   font-size: 1.8rem;
 }
 
-p, li, dt, dd, time, table, big, textarea, label {
+p, li, dt, dd, table, big, label {
   line-height: 3.2rem;
-  margin-bottom: 1.5rem;
+}
+
+p, ul, ol, dt, table, big, label {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #44d;
+
+  &:hover {
+    color: #3af;
+  }
+
+  &.important-link {
+    font-weight: bold;
+  }
+}
+
+ul > li,
+ol > li {
+  margin-left: 3.2rem;
+}
+
+li, p:last-child {
+  margin-bottom: 0;
+}
+li li {
+  font-size: 100%;
+  margin-left: 1.6rem;
 }
 
 a,
@@ -48,32 +76,15 @@ button {
   transition: all .3s ease-out;
 }
 
-li,
-p:last-child {
-  margin-bottom: 0;
-}
-
-ul > li,
-ol > li {
-  margin-left: 3.2rem;
-}
-
-li li {
-  font-size: 100%;
-  margin-left: 1.6rem;
-}
-
 svg {
   fill: currentColor;
 }
 
-abbr,
-acronym {
+abbr, acronym {
   border-bottom: 1px dotted #f7f9fb;
 }
 
-mark,
-ins {
+mark, ins {
   background-color: rgba(221, 238, 255, 0.8);
   color: inherit;
 }
@@ -100,7 +111,6 @@ hr {
 @import "heading";
 @import "margins";
 @import "text";
-@import "links";
 @import "grid";
 
 .box-white {
