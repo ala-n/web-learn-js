@@ -1,3 +1,17 @@
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+
+  + h1,
+  + h2,
+  + h3,
+  + h4,
+  + h5,
+  + h6 {
+    margin-top: .8rem;
+  }
+}
+
+// 1. Chapter
 h1 {
   font-size: 4rem;
   line-height: 5.6rem;
@@ -6,13 +20,8 @@ h1 {
     font-size: 5.6rem;
     line-height: 7.2rem;
   }
-
-  span {
-    font-style: italic;
-    font-family: 'Maitree', times, serif;
-  }
 }
-
+// 2. Section
 h2 {
   font-size: 3.2rem;
   line-height: 4.8rem;
@@ -22,7 +31,7 @@ h2 {
     line-height: 6.4rem;
   }
 }
-
+// 3. Group of articles
 h3 {
   font-size: 2.4rem;
   line-height: 4rem;
@@ -32,7 +41,7 @@ h3 {
     line-height: 5.6rem;
   }
 }
-
+// 4. Article
 h4 {
   font-size: 2.2rem;
   line-height: 4rem;
@@ -43,30 +52,14 @@ h4 {
   }
 }
 
+// 5. Article Part
 h5 {
   font-size: 2rem;
-  font-weight: 600;
   line-height: 3.2rem;
 }
 
+// 6. Article major point
 h6 {
   font-size: 1.8rem;
-  font-weight: 600;
   line-height: 3.2rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  + h1,
-  + h2,
-  + h3,
-  + h4,
-  + h5,
-  + h6 {
-    margin-top: .8rem;
-  }
-
-  + img {
-    margin-bottom: 4.8rem;
-    margin-top: 4.8rem;
-  }
 }
