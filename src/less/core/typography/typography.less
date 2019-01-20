@@ -119,32 +119,34 @@ hr {
 @import "grid";
 
 .box-white {
-  padding: 2.4rem;
+  width: 100%;
+  padding: 1rem 2rem;
 
   background: #fff;
   border: 1px solid rgba(0, 20, 80, 0.1);
-  -webkit-box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
   box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
-  &:hover {
-    -webkit-box-shadow: 0 8px 16px rgba(0, 40, 160, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
-    box-shadow: 0 8px 16px rgba(0, 40, 160, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
-  }
 
-  & + & {
-    margin-top: 1rem;
+  text-align: left;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 40, 160, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
   }
 }
 
-
+pre,
+code {
+  font-family: 'Cousine', monospace;
+}
 pre {
   font-size: 1.6rem;
   line-height: 2.4rem;
-  overflow: auto;
-  padding: 2.4rem;
-  text-align: left;
+
   white-space: pre-wrap;
-  width: 100%;
   word-wrap: break-word;
+
+  overflow: auto;
+
+  .box-white();
 
   + p {
     margin-top: 3.2rem;
@@ -155,18 +157,24 @@ pre {
 }
 code {
   padding: .4rem;
-}
-pre,
-code {
-  font-family: 'Cousine', monospace;
-}
-pre {
-  .box-white();
-}
-code {
   background-color: rgba(255, 255, 255, 0.09);
 }
 
+.note {
+  .box-white;
+
+  font-family: Cousine, monospace;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  background: #fffcc8;
+}
+
+pre + pre,
+.note + pre,
+pre + .note,
+.note + .note {
+  margin-top: 1rem;
+}
 
 [class*='content-'] {
   position: relative;
@@ -205,7 +213,3 @@ code {
 [class*='content-'] p {
   font-size: 2.4rem;
   line-height: 4rem; }
-
-.note {
-  background: #fffcc8;
-}
