@@ -9,10 +9,10 @@ import {WebSlideRouteLink} from "./components/web-slides-route-link";
 
 // Register Core Plugins
 WebSlides.registerPlugin('hash', WebSlidesHashPlugin);
-WebSlides.registerPlugin('wheel', WebSlidesMouseWheelPlugin);
+WebSlides.registerPlugin('wheel', WebSlidesMouseWheelPlugin); // TODO: Add Device Detection
 WebSlides.registerPlugin('touch', WebSlidesTouchPlugin);
-WebSlides.registerPlugin('keyboard', WebSlidesKeyboardPlugin);
-WebSlides.registerPlugin('mutation', WebSlidesMutationPlugin);
+WebSlides.registerPlugin('keyboard', WebSlidesKeyboardPlugin); // TODO: Add Device Detection
+WebSlides.registerPlugin('mutation', WebSlidesMutationPlugin); // TODO: Possibly can be disabled cause still have no real case
 
 // Register Core Components
 customElements.define(WebSlides.is, WebSlides);

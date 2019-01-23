@@ -13,7 +13,7 @@ export class WebSlidesMutationPlugin extends WebSlidesPlugin {
         this._contentObserver.disconnect();
     }
 
-    public onContentMutation = (records: MutationRecord[]) => {
+    private onContentMutation = (records: MutationRecord[]) => {
         const changed = records.some((r) => r.target instanceof WebSlide);
         if (changed) {
             this.ws.invalidateCaches();

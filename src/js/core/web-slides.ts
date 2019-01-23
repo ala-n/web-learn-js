@@ -11,7 +11,7 @@ export class WebSlides extends HTMLElement {
 
     static get is() { return 'web-slides'; }
 
-    public _isMoving = false;
+    private _isMoving = false;
     private _slidesCache: WebSlide[];
     private _plugins: {[key: string]: WebSlidesPlugin};
 
@@ -124,6 +124,8 @@ export class WebSlides extends HTMLElement {
         }
         return this._slidesCache;
     }
+
+    public get isMoving() { return this._isMoving; }
 
     public invalidateCaches() {
         this._slidesCache = null;
