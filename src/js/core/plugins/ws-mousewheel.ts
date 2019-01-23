@@ -1,4 +1,4 @@
-import {WebSlidesPlugin} from "../web-slides";
+import {WebSlidesPlugin} from "../web-slides-plugin";
 
 const WHEEL_TOLERANCE = 40;
 const SCROLL_TOLERANCE = 5; // px

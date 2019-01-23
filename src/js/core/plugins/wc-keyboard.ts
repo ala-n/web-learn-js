@@ -1,4 +1,4 @@
-import {WebSlidesPlugin} from "../web-slides";
+import {WebSlidesPlugin} from "../web-slides-plugin";
 import KeyManager from "../utils/keyboard";
 
 export class WebSlidesKeyboardPlugin extends WebSlidesPlugin {

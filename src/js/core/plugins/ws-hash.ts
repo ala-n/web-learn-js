@@ -1,4 +1,5 @@
-import {WebSlideChangeEvent, WebSlidesPlugin} from "../web-slides";
+import {WebSlidesPlugin} from "../web-slides-plugin";
+import {WebSlideChangeEvent} from "../web-slide-event";
 
 export class WebSlidesHashPlugin extends WebSlidesPlugin {
 

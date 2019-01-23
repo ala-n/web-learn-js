@@ -1,48 +1,15 @@
-import 'hammerjs';
-import {WebSlide} from './web-slide';
 import DOM from "./utils/dom";
+import {WebSlide} from './web-slide';
+import {WebSlideChangeEvent} from "./web-slide-event";
+import {WebSlidesPlugin, WSPluginConstructor} from "./web-slides-plugin";
 
 export const NEXT_SLIDE = '$next';
 export const PREV_SLIDE = '$prev';
-
-export class WebSlideChangeEvent extends Event {
-    constructor(
-        eventType: string,
-        public readonly currentSlide: WebSlide,
-        public readonly relatedSlide: WebSlide
-    ) {
-        super(eventType, {
-            bubbles: true
-        });
-    }
-
-    public static dispatch(target: WebSlides, type:string, currentSlide: WebSlide, relatedSlide: WebSlide) {
-        return target.dispatchEvent(new WebSlideChangeEvent(type, currentSlide, relatedSlide));
-    }
-}
-
-export abstract class WebSlidesPlugin {
-    protected readonly ws: WebSlides;
-
-    constructor(owner: WebSlides) {
-        this.ws = owner;
-    }
-
-    abstract bind(): void;
-    abstract destroy():void;
-}
-interface WSPluginConstructor {
-    new (owner: WebSlides): WebSlidesPlugin;
-}
 
 const pluginRegistry : {[key: string]: WSPluginConstructor} = {};
 export class WebSlides extends HTMLElement {
 
     static get is() { return 'web-slides'; }
-
-    public static registerPlugin(pluginName: string, plugin: WSPluginConstructor) {
-        pluginRegistry[pluginName] = plugin;
-    }
 
     public _isMoving = false;
     private _slidesCache: WebSlide[];
@@ -76,14 +43,10 @@ export class WebSlides extends HTMLElement {
     }
 
     private _bindListeners() {
-        Object.keys(this._plugins).forEach((pluginName) => {
-           this._plugins[pluginName].bind();
-        });
+        Object.values(this._plugins).forEach((plugin) => plugin.bind());
     }
     private _unbindListeners() {
-        Object.keys(this._plugins).forEach((pluginName) => {
-            this._plugins[pluginName].bind();
-        });
+        Object.values(this._plugins).forEach((plugin) => plugin.bind());
     }
 
     public goTo(slide: number | string | WebSlide) {
@@ -170,5 +133,10 @@ export class WebSlides extends HTMLElement {
     // Simple getters/setters
     get bodyClass(): string {
         return this.getAttribute('body-class') || 'ws-ready';
+    }
+
+    // Global Config
+    public static registerPlugin(pluginName: string, plugin: WSPluginConstructor) {
+        pluginRegistry[pluginName] = plugin;
     }
 }

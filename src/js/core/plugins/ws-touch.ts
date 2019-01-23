@@ -1,4 +1,5 @@
-import {WebSlidesPlugin} from "../web-slides";
+import 'hammerjs';
+import {WebSlidesPlugin} from "../web-slides-plugin";
 
 export class WebSlidesTouchPlugin extends WebSlidesPlugin {
     private _touchManager: HammerManager;
