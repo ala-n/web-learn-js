@@ -1,4 +1,4 @@
-import {WebSlides} from "./web-slides";
+import {WebSlides} from "../web-slides";
 import {html, render} from 'lit-html';
 
 export class WebSlidesNavbar extends HTMLElement {
@@ -36,5 +36,3 @@ export class WebSlidesNavbar extends HTMLElement {
         `, this);
     }
 }
-
-customElements.define(WebSlidesNavbar.is, WebSlidesNavbar);

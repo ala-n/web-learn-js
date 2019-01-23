@@ -1,4 +1,4 @@
-import {WebSlides} from "./web-slides";
+import {WebSlides} from "../web-slides";
 
 export class WebSlideRouteLink extends HTMLAnchorElement {
     public static get is() { return 'ws-route-link'; }
@@ -26,7 +26,3 @@ export class WebSlideRouteLink extends HTMLAnchorElement {
         (document.querySelector(WebSlides.is) as WebSlides).goTo(href);
     };
 }
-
-customElements.define(WebSlideRouteLink.is, WebSlideRouteLink, {
-    extends: 'a'
-});
