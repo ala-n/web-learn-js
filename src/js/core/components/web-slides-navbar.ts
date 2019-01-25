@@ -1,7 +1,7 @@
 import {WebSlides} from "../web-slides";
 import {html, render} from 'lit-html';
 
-export class WebSlidesNavbar extends HTMLElement {
+export class WebSlidesNavBar extends HTMLElement {
     public static get is() { return 'web-slides-nav'; }
 
     private _owner: WebSlides;
@@ -12,9 +12,10 @@ export class WebSlidesNavbar extends HTMLElement {
 
     public connectedCallback() {
         this._owner = this.closest(WebSlides.is) as WebSlides;
-        this.render();
-
-        this._owner.addEventListener('ws:changed', this.onStateChanged);
+        if (this._owner) {
+            this.render();
+            this._owner.addEventListener('ws:changed', this.onStateChanged);
+        }
     }
     public disconnectedCallback() {
         this._owner.removeEventListener('ws:changed', this.onStateChanged);
@@ -25,8 +26,9 @@ export class WebSlidesNavbar extends HTMLElement {
     };
 
     public render() {
-        const activeIndex = this._owner.activeSlide.index + 1;
         const count = this._owner.count;
+        const activeSlide = this._owner.activeSlide;
+        const activeIndex = activeSlide ? (activeSlide.index + 1) : 0;
         render(html`
             <a is="ws-route-link" href="#next" title="Arrow Keys" class="arrow-next">↓</a>
             <a is="ws-route-link" href="#prev" title="Arrow Keys" class="arrow-prev">↑</a>

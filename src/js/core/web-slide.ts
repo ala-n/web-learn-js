@@ -50,7 +50,3 @@ export class WebSlide extends HTMLElement {
         this._index = i;
     }
 }
-
-customElements.define(WebSlide.is, WebSlide, {
-    extends: 'section'
-});

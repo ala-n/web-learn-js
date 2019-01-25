@@ -1,5 +1,6 @@
 import {WebSlides} from "../web-slides";
 
+/** @deprecated */
 export class WebSlideRouteLink extends HTMLAnchorElement {
     public static get is() { return 'ws-route-link'; }
 

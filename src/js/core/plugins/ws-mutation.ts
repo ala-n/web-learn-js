@@ -16,7 +16,7 @@ export class WebSlidesMutationPlugin extends WebSlidesPlugin {
     private onContentMutation = (records: MutationRecord[]) => {
         const changed = records.some((r) => r.target instanceof WebSlide);
         if (changed) {
-            this.ws.invalidateCaches();
+            this.ws.flush();
         }
     };
 }

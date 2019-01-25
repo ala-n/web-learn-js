@@ -127,7 +127,7 @@ export class WebSlides extends HTMLElement {
 
     public get isMoving() { return this._isMoving; }
 
-    public invalidateCaches() {
+    public flush() {
         this._slidesCache = null;
         // TODO: fire statechange event
     }
