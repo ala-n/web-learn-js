@@ -5,10 +5,10 @@ const SCROLL_TOLERANCE = 5; // px
 
 export class WebSlidesMouseWheelPlugin extends WebSlidesPlugin {
     bind(): void {
-        window.addEventListener('wheel', this.onMouseWheel);
+        this.ws.addEventListener('wheel', this.onMouseWheel);
     }
     destroy(): void {
-        window.removeEventListener('wheel', this.onMouseWheel);
+        this.ws.removeEventListener('wheel', this.onMouseWheel);
     }
 
     private get isTopScroll() {

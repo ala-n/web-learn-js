@@ -125,7 +125,7 @@ export class WebSlides extends HTMLElement {
         return this._slidesCache;
     }
 
-    public get disabled() { return document.body.classList.contains('menu'); } //TODO: rewrite
+    public get disabled() { return false; } //TODO
     public get isMoving() { return this._isMoving; }
 
     public flush() {
