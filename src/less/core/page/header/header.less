@@ -6,13 +6,14 @@ header {
   position: absolute;
   z-index: 3;
 
-  top: 0;
+  //top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 4rem;
   overflow: hidden;
 
-  padding: 10px 2.4rem;
+  padding: 0 2.4rem;
 
   transition: all .4s ease-in-out;
 
@@ -30,58 +31,21 @@ header {
       align-self: flex-start;
       height: 100%;
 
+      padding: 10px;
+
       img {
         width: auto;
         height: 100%;
         vertical-align: middle;
       }
     }
-
-    ul {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-      flex: 1 0 auto;
-      margin: 0;
-
-      li {
-        float: left;
-        list-style: none;
-        position: relative;
-
-        flex: 0 0 auto;
-        width: auto;
-
-        margin: 0;
-
-        img {
-          margin: auto;
-        }
-      }
-    }
-
-    a.navlink {
-      display: block;
-      height: 100%;
-
-      text-decoration: none;
-
-      img {
-        width: auto;
-        height: 40px;
-      }
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-    }
-
   }
 
   .landing-bg {
     position: absolute;
     pointer-events: none;
-    top: 0;
+    //top: 0;
+    bottom: 0;
     left: 0;
     opacity: 0.5;
     width: 100%;
@@ -91,7 +55,24 @@ header {
 
     transition: opacity .4s ease-in-out;
   }
+
+  web-slides-nav {
+    margin-left: auto;
+    .counter-link {
+      margin-left: 1rem;
+    }
+    .arrow-next, .arrow-prev {
+      opacity: 0;
+      transition: all .5s linear;
+    }
+  }
+
   &:hover {
+    web-slides-nav {
+      .arrow-next, .arrow-prev {
+        opacity: 1;
+      }
+    }
     .landing-bg {
       opacity: 1;
     }
@@ -100,14 +81,20 @@ header {
 
 @media all and (max-width: 800px) {
   .landing-slide {
-    margin-top: -60px;
+    margin-top: -4rem;
   }
 
   header {
     position: relative;
+    .landing-bg {
+      top: 0;
+      bottom: auto;
+    }
 
-    .navbar ul {
-      display: none;
+    web-slides-nav {
+      .arrow-next, .arrow-prev {
+        display: none;
+      }
     }
 
     .landing-bg {

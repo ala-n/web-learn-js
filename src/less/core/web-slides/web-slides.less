@@ -27,6 +27,7 @@ web-slides {
 
   &[ready] .slide {
     display: none;
+    min-height: 100%;
   }
 
   .slide.next,
@@ -62,8 +63,12 @@ web-slides {
     transform: translateY(-100vh);
     opacity: 0;
   }
-}
 
+
+  @media all and (max-width: 800px) {
+    height: calc(100vh - 4rem);
+  }
+}
 //#webslides {
 //  -ms-overflow-style: none;
 //  -webkit-overflow-scrolling: touch;
