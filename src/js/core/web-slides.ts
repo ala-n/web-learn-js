@@ -3,8 +3,8 @@ import {WebSlide} from './web-slide';
 import {WebSlideChangeEvent} from "./web-slide-event";
 import {WebSlidesPlugin, WSPluginConstructor} from "./web-slides-plugin";
 
-export const NEXT_SLIDE = '$next';
-export const PREV_SLIDE = '$prev';
+export const NEXT_SLIDE = '@next';
+export const PREV_SLIDE = '@prev';
 
 const pluginRegistry : {[key: string]: WSPluginConstructor} = {};
 export class WebSlides extends HTMLElement {
@@ -86,10 +86,10 @@ export class WebSlides extends HTMLElement {
         });
     }
     public next() {
-        this.goTo('$next');
+        this.goTo(NEXT_SLIDE);
     }
     public prev() {
-        this.goTo('$prev');
+        this.goTo(PREV_SLIDE);
     }
 
     public get activeSlide() {
@@ -125,6 +125,7 @@ export class WebSlides extends HTMLElement {
         return this._slidesCache;
     }
 
+    public get disabled() { return document.body.classList.contains('menu'); } //TODO: rewrite
     public get isMoving() { return this._isMoving; }
 
     public flush() {

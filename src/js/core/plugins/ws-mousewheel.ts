@@ -19,6 +19,10 @@ export class WebSlidesMouseWheelPlugin extends WebSlidesPlugin {
     }
 
     private onMouseWheel = (event: WheelEvent) => {
+        if (this.ws.disabled) {
+            return;
+        }
+
         if (this.ws.isMoving) {
             event.preventDefault();
             return;

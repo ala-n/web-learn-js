@@ -1,16 +1,19 @@
 // Strict Polyfills
 import './polyfills/closest';
 // Bundle
+import {DeviceDetector} from "./utils/devices";
+
+import {WebSlide} from "./web-slide";
 import {WebSlides} from "./web-slides";
+
 import {WebSlidesHashPlugin} from "./plugins/ws-hash";
 import {WebSlidesMouseWheelPlugin} from "./plugins/ws-mousewheel";
 import {WebSlidesKeyboardPlugin} from "./plugins/wc-keyboard";
 import {WebSlidesMutationPlugin} from "./plugins/ws-mutation";
 import {WebSlidesTouchPlugin} from "./plugins/ws-touch";
+
 import {WebSlidesNavBar} from "./components/web-slides-navbar";
-import {WebSlideRouteLink} from "./components/web-slides-route-link";
-import {DeviceDetector} from "./utils/devices";
-import {WebSlide} from "./web-slide";
+import {WebSlidesNavMenu} from "./components/web-slides-navmenu";
 
 // Register Core Plugins
 WebSlides.registerPlugin('hash', WebSlidesHashPlugin);
@@ -31,7 +34,5 @@ customElements.whenDefined(WebSlide.is).then(() => {
 // Register add
 customElements.whenDefined(WebSlides.is).then(() => {
     customElements.define(WebSlidesNavBar.is, WebSlidesNavBar);
-    customElements.define(WebSlideRouteLink.is, WebSlideRouteLink, {
-        extends: 'a'
-    });
+    customElements.define(WebSlidesNavMenu.is, WebSlidesNavMenu);
 });
