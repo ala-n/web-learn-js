@@ -1,4 +1,25 @@
-section {
+web-slide {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+
+  font: inherit;
+  font-size: 100%;
+
+  height: 400px; // for proper calculations
+  min-height: 100vh;
+
+  page-break-after: always;
+  word-wrap: break-word;
+
+  /*Fullscreen*/
+  padding: 2.4rem;
+  @media (min-width: 1024px) {
+    padding-bottom: 4rem;
+    padding-top: 4rem;
+  }
+
   .background {
     position: absolute;
     bottom: 0;
@@ -20,7 +41,6 @@ section {
     animation: fadeIn .6s ease-in-out;
   }
 }
-
 
 /*=== WRAP/CONTAINER === */
 .wrap {

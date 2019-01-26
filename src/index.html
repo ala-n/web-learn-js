@@ -12,12 +12,11 @@
     <link rel="canonical" href="http://alan-js-learn.herkuapp.com/">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext">
 
     <!-- Styles -->
     <link rel="stylesheet" type='text/css' media='all' href="styles.css">
     <link rel="stylesheet" type='text/css' media='print' href="styles-print.css">
-
 
     <!-- FAVICONS -->
     <link rel="shortcut icon" sizes="16x16" href="images/favicons/favicon.png">
@@ -26,13 +25,22 @@
     <link rel="apple-touch-icon icon" sizes="120x120" href="images/favicons/favicon-120.png">
     <link rel="apple-touch-icon icon" sizes="152x152" href="images/favicons/favicon-152.png">
     <link rel="apple-touch-icon icon" sizes="180x180" href="images/favicons/favicon-180.png">
-    <link rel="apple-touch-icon icon" sizes="192x192" href="images/favicons/favicon-192.png">
 
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#333333">
 
-    <script src="app.js" defer></script>
+    <!-- Polyfill -->
+    <script>
+        if (!Array.from || !Object.assign) {
+            document.documentElement.className += 'no-es6';
+            alert('Good program for loading sane browser detected. Presentation will not work in calculators, ' +
+                'notepads or Internet Explorer. Better try Chrome, Opera, Safari, Firefox or Edge :)');
+        } else if (!('customElements' in window)) {
+            document.write('<script src="polyfills.js" type="text/javascript"><\/script>');
+        }
+    </script>
+    <script src="app.js" type="text/javascript" defer></script>
 </head>
 <body>
 

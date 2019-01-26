@@ -21,24 +21,12 @@ web-slides {
     display: none;
   }
 
-  section, .slide {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-
-    min-height: 100vh;
-
-    page-break-after: always;
-    word-wrap: break-word;
-
+  .slide {
     transition: transform 0.5s ease-in-out, opacity 0.5s linear;
   }
 
-  &[ready] {
-    section, .slide {
-      display: none;
-    }
+  &[ready] .slide {
+    display: none;
   }
 
   .slide.next,
@@ -73,16 +61,6 @@ web-slides {
   .slide.active.down {
     transform: translateY(-100vh);
     opacity: 0;
-  }
-}
-
-/*=== Section = Slide === */
-section, .slide {
-  /*Fullscreen*/
-  padding: 2.4rem;
-  @media (min-width: 1024px) {
-    padding-bottom: 4rem;
-    padding-top: 4rem;
   }
 }
 

@@ -24,12 +24,11 @@ if (DeviceDetector.isTouchDevice()) {
 WebSlides.registerPlugin('mutation', WebSlidesMutationPlugin);
 
 // Register Core Components
-customElements.define(WebSlide.is, WebSlide, {
-    extends: 'section'
-});
+customElements.define(WebSlide.is, WebSlide);
 customElements.whenDefined(WebSlide.is).then(() => {
     customElements.define(WebSlides.is, WebSlides);
 });
+// Register add
 customElements.whenDefined(WebSlides.is).then(() => {
     customElements.define(WebSlidesNavBar.is, WebSlidesNavBar);
     customElements.define(WebSlideRouteLink.is, WebSlideRouteLink, {
