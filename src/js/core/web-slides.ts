@@ -1,22 +1,19 @@
-import 'hammerjs';
-import {WebSlide} from './web-slide';
 import DOM from "./utils/dom";
+import {WebSlide} from './web-slide';
+import {WebSlideChangeEvent} from "./web-slide-event";
+import {WebSlidesPlugin, WSPluginConstructor} from "./web-slides-plugin";
 
-export const NEXT_SLIDE = '$next';
-export const PREV_SLIDE = '$prev';
+export const NEXT_SLIDE = '@next';
+export const PREV_SLIDE = '@prev';
 
-const SCROLL_TOLERANCE = 5; // px
-const WHEEL_TOLERANCE = 40;
-
+const pluginRegistry : {[key: string]: WSPluginConstructor} = {};
 export class WebSlides extends HTMLElement {
-
 
     static get is() { return 'web-slides'; }
 
     private _isMoving = false;
     private _slidesCache: WebSlide[];
-    private _contentObserver: MutationObserver;
-    private _touchManager: HammerManager;
+    private _plugins: {[key: string]: WebSlidesPlugin};
 
     constructor() {
         super();
@@ -30,33 +27,26 @@ export class WebSlides extends HTMLElement {
         this.setAttribute('ready','');
         document.documentElement.classList.add(this.bodyClass);
 
+        this._initPlugins();
         this._bindListeners();
-
-        this.onWindowHashChange();
     }
     disconnectedCallback() {
         this._unbindListeners();
     }
 
+    private _initPlugins() {
+        this._plugins = {};
+        Object.keys(pluginRegistry).forEach((pluginName) => {
+            const Construct = pluginRegistry[pluginName];
+            this._plugins[pluginName] = new Construct(this);
+        });
+    }
+
     private _bindListeners() {
-        window.addEventListener('hashchange', this.onWindowHashChange);
-        window.addEventListener('wheel', this.onMouseWheel);
-
-        this._touchManager = new Hammer.Manager(this);
-        this._touchManager.add(new Hammer.Swipe());
-
-        this._touchManager.on('swipeup', () => this.next());
-        this._touchManager.on('swipedown', () => this.prev());
-
-        this._contentObserver = new MutationObserver(this.onContentMutation);
-        this._contentObserver.observe(this, {childList: true});
+        Object.values(this._plugins).forEach((plugin) => plugin.bind());
     }
     private _unbindListeners() {
-        window.removeEventListener('hashchange', this.onWindowHashChange);
-        window.removeEventListener('wheel', this.onMouseWheel);
-
-        this._touchManager.destroy();
-        this._contentObserver.disconnect();
+        Object.values(this._plugins).forEach((plugin) => plugin.bind());
     }
 
     public goTo(slide: number | string | WebSlide) {
@@ -71,11 +61,7 @@ export class WebSlides extends HTMLElement {
 
         if (current === target) return;
 
-        const eBefore = DOM.fireEvent(this, 'ws:beforechange', {
-            currentSlide: current,
-            targetSlide: target
-        });
-
+        const eBefore = WebSlideChangeEvent.dispatch(this, 'ws:beforechange', current, target);
         if (!eBefore) return;
 
         this._isMoving = true;
@@ -96,14 +82,14 @@ export class WebSlides extends HTMLElement {
 
             this._isMoving = false;
 
-            this.onSlideChanged(target, current);
+            WebSlideChangeEvent.dispatch(this, 'ws:changed', target, current);
         });
     }
     public next() {
-        this.goTo('$next');
+        this.goTo(NEXT_SLIDE);
     }
     public prev() {
-        this.goTo('$prev');
+        this.goTo(PREV_SLIDE);
     }
 
     public get activeSlide() {
@@ -139,63 +125,21 @@ export class WebSlides extends HTMLElement {
         return this._slidesCache;
     }
 
-    public invalidateCaches() {
+    public get disabled() { return document.body.classList.contains('menu'); } //TODO: rewrite
+    public get isMoving() { return this._isMoving; }
+
+    public flush() {
         this._slidesCache = null;
         // TODO: fire statechange event
     }
-
-    public get isTopScroll() {
-        return this.scrollTop < SCROLL_TOLERANCE;
-    }
-    public get isBottomScroll() {
-        return this.scrollHeight - (this.scrollTop + this.clientHeight) < SCROLL_TOLERANCE;
-    }
-
-    // Listeners
-    private onWindowHashChange = () => {
-        let hash = window.location.hash.substr(1);
-        this.goTo(isNaN(+hash) ? hash : (+hash - 1));
-    };
-    private onSlideChanged = (current: WebSlide, from: WebSlide) => {
-        WebSlides.updateHash(current);
-        DOM.fireEvent(this, 'ws:changed', {
-            currentSlide: current,
-            prevSlide: from
-        });
-    };
-    private onMouseWheel = (event: WheelEvent) => {
-        if (this._isMoving) return;
-        const {deltaY: wheelDelta} = event;
-        const goNext = wheelDelta > 0;
-
-        if (Math.abs(wheelDelta) > WHEEL_TOLERANCE) {
-            if (goNext && this.isBottomScroll) {
-                this.next();
-                event.preventDefault();
-            }
-            if (!goNext && this.isTopScroll){
-                this.prev();
-                event.preventDefault();
-            }
-        }
-    };
-    private onContentMutation = (records: MutationRecord[]) => {
-        const changed = records.some((r) => r.target instanceof WebSlide);
-        if (changed) {
-            this.invalidateCaches();
-        }
-    };
 
     // Simple getters/setters
     get bodyClass(): string {
         return this.getAttribute('body-class') || 'ws-ready';
     }
 
-    public static updateHash(slide: WebSlide) {
-        history.pushState({
-            slideRoute: slide.route
-        }, `Slide ${slide.title}`, `#${slide.route}`);
+    // Global Config
+    public static registerPlugin(pluginName: string, plugin: WSPluginConstructor) {
+        pluginRegistry[pluginName] = plugin;
     }
 }
-
-customElements.define(WebSlides.is, WebSlides);

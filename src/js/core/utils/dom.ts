@@ -21,20 +21,16 @@ export default class DOM {
     }
 
     /**
-     * Hides an element setting the display to none.
-     * @param {Element} el Element to be hidden.
+     * @return {boolean} Whether the element is an input or content
+     * editable.
      */
-    static hide(el: HTMLElement) {
-        el.style.display = 'none';
-    }
+    static isFocusableElement(element: Element) {
+        if ( !element ) return false;
+        if (['INPUT', 'SELECT', 'OPTION', 'TEXTAREA'].indexOf(element.tagName) > -1) return true;
 
-    /**
-     * Shows an element by removing the display property. This is only intended
-     * to be used in conjunction with DOM.hide.
-     * @param {Element} el Element to be shown.
-     */
-    static show(el: HTMLElement) {
-        el.style.display = '';
+        return element instanceof HTMLElement &&
+            element.contentEditable !== 'inherit' &&
+            element.contentEditable !== undefined;
     }
 
     /**

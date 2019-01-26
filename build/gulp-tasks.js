@@ -36,8 +36,10 @@ function buildLess(prod) {
         .pipe(plugins.postcss([
             autoprefixer({
                 browsers: [
-                    'last 3 version',
-                    'not ie <= 11'
+                    'last 2 version',
+                    '> 1%',
+                    'not ie <= 10',
+                    'not dead'
                 ]
             }),
             cssnano()
