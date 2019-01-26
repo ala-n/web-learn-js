@@ -31,7 +31,7 @@ export class WebSlidesMouseWheelPlugin extends WebSlidesPlugin {
         const {deltaY: wheelDelta} = event;
         const goNext = wheelDelta > 0;
 
-        if (Math.abs(wheelDelta) > WHEEL_TOLERANCE) {
+        if (Math.abs(wheelDelta * (event.deltaMode ? WHEEL_TOLERANCE : 1)) > WHEEL_TOLERANCE) {
             if (goNext && this.isBottomScroll) {
                 this.ws.next();
                 event.preventDefault();
