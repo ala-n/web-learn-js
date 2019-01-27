@@ -17,6 +17,8 @@ web-slides {
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
 
+  background: #f7f9fb;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -27,7 +29,6 @@ web-slides {
 
   &[ready] .slide {
     display: none;
-    min-height: 100%;
   }
 
   .slide.next,
@@ -67,6 +68,12 @@ web-slides {
 
   @media all and (max-width: 800px) {
     height: calc(100vh - 4rem);
+    web-slide {
+      min-height: calc(100vh - 4rem);
+      .wrap {
+        padding-bottom: 10rem;
+      }
+    }
   }
 }
 //#webslides {

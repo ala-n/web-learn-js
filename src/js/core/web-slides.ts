@@ -128,6 +128,13 @@ export class WebSlides extends HTMLElement {
     public get disabled() { return false; } //TODO
     public get isMoving() { return this._isMoving; }
 
+    public isScrollTop(tolerance = 5) {
+        return this.scrollTop < tolerance;
+    }
+    public isScrollBottom(tolerance = 5) {
+        return this.scrollHeight - (this.scrollTop + this.clientHeight) < tolerance;
+    }
+
     public flush() {
         this._slidesCache = null;
         // TODO: fire statechange event

@@ -11,13 +11,6 @@ export class WebSlidesMouseWheelPlugin extends WebSlidesPlugin {
         this.ws.removeEventListener('wheel', this.onMouseWheel);
     }
 
-    private get isTopScroll() {
-        return this.ws.scrollTop < SCROLL_TOLERANCE;
-    }
-    private get isBottomScroll() {
-        return this.ws.scrollHeight - (this.ws.scrollTop + this.ws.clientHeight) < SCROLL_TOLERANCE;
-    }
-
     private onMouseWheel = (event: WheelEvent) => {
         if (this.ws.disabled) {
             return;
@@ -32,11 +25,11 @@ export class WebSlidesMouseWheelPlugin extends WebSlidesPlugin {
         const goNext = wheelDelta > 0;
 
         if (Math.abs(wheelDelta * (event.deltaMode ? WHEEL_TOLERANCE : 1)) > WHEEL_TOLERANCE) {
-            if (goNext && this.isBottomScroll) {
+            if (goNext && this.ws.isScrollBottom()) {
                 this.ws.next();
                 event.preventDefault();
             }
-            if (!goNext && this.isTopScroll){
+            if (!goNext && this.ws.isScrollTop()){
                 this.ws.prev();
                 event.preventDefault();
             }

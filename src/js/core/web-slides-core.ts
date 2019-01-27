@@ -21,9 +21,7 @@ if (!DeviceDetector.isMobile()) {
     WebSlides.registerPlugin('wheel', WebSlidesMouseWheelPlugin);
     WebSlides.registerPlugin('keyboard', WebSlidesKeyboardPlugin);
 }
-if (DeviceDetector.isTouchDevice()) {
-    WebSlides.registerPlugin('touch', WebSlidesTouchPlugin);
-}
+WebSlides.registerPlugin('touch', WebSlidesTouchPlugin);
 WebSlides.registerPlugin('mutation', WebSlidesMutationPlugin);
 
 // Register Core Components
