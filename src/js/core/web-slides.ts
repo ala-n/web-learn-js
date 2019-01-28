@@ -73,6 +73,8 @@ export class WebSlides extends HTMLElement {
         current.classList.add(direction);
 
         DOM.once(target, DOM.getTransitionEvent(), () => {
+            this.scrollTop = 0;
+
             current.active = false;
             current.classList.remove(direction);
 
