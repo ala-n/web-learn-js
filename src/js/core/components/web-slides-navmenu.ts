@@ -1,5 +1,6 @@
 import {WebSlides} from "../web-slides";
 import {html, render} from 'lit-html';
+import {SlideEventType} from "../web-slide-event";
 
 export class WebSlidesNavMenu extends HTMLElement {
     public static get is() { return 'web-slides-nav-menu'; }
@@ -10,11 +11,11 @@ export class WebSlidesNavMenu extends HTMLElement {
         this._owner = document.querySelector(WebSlides.is) as WebSlides;
         if (this._owner) {
             this.render();
-            this._owner.addEventListener('ws:changed', this.onStateChanged);
+            this._owner.addEventListener(SlideEventType.CHANGED, this.onStateChanged);
         }
     }
     public disconnectedCallback() {
-        this._owner.removeEventListener('ws:changed', this.onStateChanged);
+        this._owner.removeEventListener(SlideEventType.CHANGED, this.onStateChanged);
     }
 
     private onStateChanged = () => {

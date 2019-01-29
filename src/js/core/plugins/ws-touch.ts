@@ -50,10 +50,10 @@ export class WebSlidesTouchPlugin extends WebSlidesPlugin {
     }
 
     onTouchStart = (event: TouchEvent | PointerEvent) => {
-        if (event instanceof TouchEvent && event.touches.length !== 1) {
+        if ((event instanceof TouchEvent && event.touches.length !== 1) ||
+            (event instanceof PointerEvent && event.pointerType !== 'touch')) {
             this.isEnabled = false;
             return;
-
         }
         this.isEnabled = true;
         const point = this.startPoint = WebSlidesTouchPlugin.normalizeTouchPoint(event);

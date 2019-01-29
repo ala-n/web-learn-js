@@ -109,11 +109,6 @@ hr {
   box-shadow: 0 0 2px #96bbee;
 }
 
-::-moz-selection,
-::-webkit-selection,
-::selection {
-  background-color: rgba(221, 238, 255, 0.8); }
-
 @import "heading";
 @import "margins";
 @import "text";
@@ -214,3 +209,8 @@ pre + .note,
 [class*='content-'] p {
   font-size: 2.4rem;
   line-height: 4rem; }
+
+::selection {
+  text-shadow: none;
+  background-color: rgba(221, 238, 255, 0.8);
+}

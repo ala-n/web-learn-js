@@ -1,6 +1,6 @@
 import DOM from "./utils/dom";
 import {WebSlide} from './web-slide';
-import {WebSlideChangeEvent} from "./web-slide-event";
+import {SlideEventType, WebSlideChangeEvent} from "./web-slide-event";
 import {WebSlidesPlugin, WSPluginConstructor} from "./web-slides-plugin";
 
 export const NEXT_SLIDE = '@next';
@@ -61,7 +61,7 @@ export class WebSlides extends HTMLElement {
 
         if (current === target) return;
 
-        const eBefore = WebSlideChangeEvent.dispatch(this, 'ws:beforechange', current, target);
+        const eBefore = WebSlideChangeEvent.dispatch(this, SlideEventType.BEFORE_CHANGE, current, target);
         if (!eBefore) return;
 
         this._isMoving = true;
@@ -84,7 +84,7 @@ export class WebSlides extends HTMLElement {
 
             this._isMoving = false;
 
-            WebSlideChangeEvent.dispatch(this, 'ws:changed', target, current);
+            WebSlideChangeEvent.dispatch(this, SlideEventType.CHANGED, target, current);
         });
     }
     public next() {
