@@ -26,12 +26,13 @@ function cleanTask() {
 function buildHTML() {
     return gulp.src(path.join(BUNDLE_DIR, '/*.html'))
         .pipe(processHTML())
+        .pipe(plugins.htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest(OUTPUT_DIR));
 }
 
 function buildLess(prod) {
     let tmp = gulp.src(path.join(BUNDLE_DIR, 'less/*.less'));
-    tmp = prod ? tmp : tmp.pipe(plugins.sourcemaps.init())
+    tmp = prod ? tmp : tmp.pipe(plugins.sourcemaps.init());
     tmp = tmp.pipe(plugins.less())
         .pipe(plugins.postcss([
             autoprefixer({
@@ -44,7 +45,7 @@ function buildLess(prod) {
             }),
             cssnano()
         ]));
-    tmp = prod ? tmp : tmp.pipe(plugins.sourcemaps.write())
+    tmp = prod ? tmp : tmp.pipe(plugins.sourcemaps.write());
     tmp = tmp.pipe(gulp.dest(OUTPUT_DIR));
     return tmp;
 }
@@ -57,7 +58,9 @@ function buildJS(prod) {
 }
 
 function gzip() {
-    return gulp.src(path.join(OUTPUT_DIR, '/*')).pipe(plugins.gzip()).pipe(gulp.dest(OUTPUT_DIR));
+    return gulp.src([path.join(OUTPUT_DIR, '/*'), '!**/*.gz'])
+        .pipe(plugins.gzip())
+        .pipe(gulp.dest(OUTPUT_DIR));
 }
 
 module.exports = { cleanTask, buildHTML, buildLess, buildJS, gzip };
