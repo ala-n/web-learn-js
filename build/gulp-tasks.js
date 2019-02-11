@@ -22,7 +22,7 @@ function cleanTask() {
 }
 
 function buildHTML() {
-    return gulp.src(path.join(BUNDLE_DIR, '/*.html'))
+    return gulp.src(path.join(BUNDLE_DIR, '/pages/*.html'))
         .pipe(require('./html-processor')())
         .pipe(plugins.htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest(OUTPUT_DIR));
@@ -49,7 +49,7 @@ function buildLess(prod) {
 }
 
 function buildJS(prod) {
-    return gulp.src(path.join(BUNDLE_DIR, 'js/*.ts'))
+    return gulp.src(path.join(BUNDLE_DIR, 'ts/*.ts'))
         .pipe(named())
         .pipe(webpackStream(prod ? wpConfig.getProdConfig() : wpConfig.getDevConfig()))
         .pipe(gulp.dest(OUTPUT_DIR));

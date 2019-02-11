@@ -21,7 +21,7 @@ export class WebSlidesHashPlugin extends WebSlidesPlugin {
 
     private onSlideChange = (event: WebSlideChangeEvent) => {
         const slide = event.currentSlide;
-        history.pushState({
+        history.replaceState({
             slideRoute: slide.route
         }, `Slide ${slide.title}`, `#${slide.route}`);
     };
