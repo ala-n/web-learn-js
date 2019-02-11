@@ -42,7 +42,7 @@
     "dev-build": "gulp build",
     "prod-build": "gulp build-prod",
 
-    "heroku-postbuild": "npm run prod"
+    "heroku-postbuild": "npm run prod-build"
   },
   "keywords": [
     "js",
