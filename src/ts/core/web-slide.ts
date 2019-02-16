@@ -1,7 +1,7 @@
 export class WebSlide extends HTMLElement {
-    public static get is() { return 'web-slide'; }
+    static get is() { return 'web-slide'; }
 
-    public static get ACTIVE_CLASS() { return 'active'; }
+    static get ACTIVE_CLASS() { return 'active'; }
 
     _index: number;
 
@@ -9,44 +9,43 @@ export class WebSlide extends HTMLElement {
         super();
     }
 
-    public connectedCallback() {
+    connectedCallback() {
         this.classList.add('slide');
     }
-    public disconnectedCallback() {
-
+    disconnectedCallback() {
     }
 
-    public get active() {
+    get active() {
         return this.classList.contains(WebSlide.ACTIVE_CLASS);
     }
-    public set active(val: boolean) {
+    set active(val: boolean) {
         this.classList.toggle(WebSlide.ACTIVE_CLASS, val);
     }
 
-    public get slideRoute() {
+    get slideRoute() {
         return this.getAttribute('slide-route');
     }
-    public set slideRoute(routeName: string) {
+    set slideRoute(routeName: string) {
         this.setAttribute('slide-route', routeName);
     }
 
-    public get slideTitle() {
+    get slideTitle() {
         return this.getAttribute('slide-title');
     }
-    public set slideTitle(title: string) {
+    set slideTitle(title: string) {
         this.setAttribute('slide-title', title);
     }
 
-    public get route() {
+    get route() {
         const r = this.slideRoute;
         return r ? r : String(this.index + 1);
     }
 
     // TMP
-    public get index() : number {
+    get index(): number {
         return this._index;
     }
-    public set index(i: number) {
+    set index(i: number) {
         this._index = i;
     }
 }

@@ -1,4 +1,4 @@
-import {WebSlidesPlugin} from "../web-slides-plugin";
+import {WebSlidesPlugin} from '../web-slides-plugin';
 
 const WHEEL_TOLERANCE = 60;
 const SCROLL_TOLERANCE = 5; // px
@@ -29,7 +29,7 @@ export class WebSlidesMouseWheelPlugin extends WebSlidesPlugin {
                 this.ws.next();
                 event.preventDefault();
             }
-            if (!goNext && this.ws.isScrollTop()){
+            if (!goNext && this.ws.isScrollTop()) {
                 this.ws.prev();
                 event.preventDefault();
             }

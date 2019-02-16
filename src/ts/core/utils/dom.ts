@@ -10,7 +10,7 @@ export default class DOM {
      * @param {string} event Event Type.
      * @param {Function} callback Function to execute once the event fires.
      */
-    static once(el: HTMLElement, event: string, callback: (e:Event) => void) {
+    static once(el: HTMLElement, event: string, callback: (e: Event) => void) {
         const cb = (e: Event) => {
             if (e.target === el) {
                 el.removeEventListener(event, cb);
@@ -48,7 +48,8 @@ export default class DOM {
      * @param {string} eventType The event type.
      * @param {Object} eventInfo Optional parameter to provide additional data
      * to the event.
-     * @return {boolean} true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+     * @return {boolean} true if either event's cancelable attribute value is false
+     * or its preventDefault() method was not invoked, and false otherwise.
      */
     static fireEvent(target: HTMLElement, eventType: string, eventInfo = {}) {
         const event = new CustomEvent(eventType, {
@@ -102,7 +103,7 @@ export default class DOM {
      * @param {?Element} optEl Element to check
      * @return {string}
      */
-    static getTransitionEvent() :string{
+    static getTransitionEvent(): string {
         if (transitionEvent) {
             return transitionEvent;
         }
@@ -110,15 +111,15 @@ export default class DOM {
         transitionEvent = '';
 
         const el = document.createElement('ws-test') as HTMLElement;
-        const transitions : {
+        const transitions: {
             [index: string]: string;
         } = {
-            'transition': 'transitionend',
-            'OTransition': 'oTransitionEnd',
-            'MozTransition': 'transitionend',
-            'WebkitTransition': 'webkitTransitionEnd'
+            transition: 'transitionend',
+            OTransition: 'oTransitionEnd',
+            MozTransition: 'transitionend',
+            WebkitTransition: 'webkitTransitionEnd'
         };
-        Object.keys(transitions).some((transitionName)=> {
+        Object.keys(transitions).some((transitionName) => {
             // @ts-ignore
             if (el.style[transitionName] !== undefined) {
                 transitionEvent  = transitions[transitionName];

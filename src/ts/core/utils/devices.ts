@@ -21,7 +21,9 @@ export class DeviceDetector {
     }
 
     static isTouchDevice() {
-        // @ts-ignore
-        return 'ontouchstart' in document.documentElement || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+        return 'ontouchstart' in document.documentElement ||
+            // @ts-ignore
+            navigator.MaxTouchPoints > 0 ||
+            navigator.msMaxTouchPoints > 0;
     }
 }

@@ -1,6 +1,6 @@
-import {WebSlidesPlugin} from "../web-slides-plugin";
-import KeyboardManager from "../utils/keyboard";
-import DOM from "../utils/dom";
+import {WebSlidesPlugin} from '../web-slides-plugin';
+import KeyboardManager from '../utils/keyboard';
+import DOM from '../utils/dom';
 
 export class WebSlidesKeyboardPlugin extends WebSlidesPlugin {
     private _keyManager: KeyboardManager;

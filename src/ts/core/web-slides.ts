@@ -1,12 +1,12 @@
-import DOM from "./utils/dom";
+import DOM from './utils/dom';
 import {WebSlide} from './web-slide';
-import {SlideEventType, WebSlideChangeEvent} from "./web-slide-event";
-import {WebSlidesPlugin, WSPluginConstructor} from "./web-slides-plugin";
+import {SlideEventType, WebSlideChangeEvent} from './web-slide-event';
+import {WebSlidesPlugin, WSPluginConstructor} from './web-slides-plugin';
 
 export const NEXT_SLIDE = '@next';
 export const PREV_SLIDE = '@prev';
 
-const pluginRegistry : {[key: string]: WSPluginConstructor} = {};
+const pluginRegistry: {[key: string]: WSPluginConstructor} = {};
 export class WebSlides extends HTMLElement {
 
     static get is() { return 'web-slides'; }
@@ -24,7 +24,7 @@ export class WebSlides extends HTMLElement {
             this.slides[0].active = true;
         }
 
-        this.setAttribute('ready','');
+        this.setAttribute('ready', '');
         document.documentElement.classList.add(this.bodyClass);
 
         this._initPlugins();
@@ -49,7 +49,7 @@ export class WebSlides extends HTMLElement {
         Object.values(this._plugins).forEach((plugin) => plugin.bind());
     }
 
-    public goTo(slide: number | string | WebSlide) {
+    goTo(slide: number | string | WebSlide) {
         const target = this.getSlide(slide);
         const current = this.activeSlide;
 
@@ -87,18 +87,18 @@ export class WebSlides extends HTMLElement {
             WebSlideChangeEvent.dispatch(this, SlideEventType.CHANGED, target, current);
         });
     }
-    public next() {
+    next() {
         this.goTo(NEXT_SLIDE);
     }
-    public prev() {
+    prev() {
         this.goTo(PREV_SLIDE);
     }
 
-    public get activeSlide() {
+    get activeSlide() {
         return this.slides.find((slide) => slide.active);
     }
 
-    public getSlide(slide: string | number | WebSlide): WebSlide {
+    getSlide(slide: string | number | WebSlide): WebSlide {
         if (slide instanceof WebSlide) return slide;
         if (typeof slide === 'number') {
             return this.slides[slide];
@@ -113,10 +113,10 @@ export class WebSlides extends HTMLElement {
 
     }
 
-    public get count() {
+    get count() {
         return this.slides.length;
     }
-    public get slides(): WebSlide[] {
+    get slides(): WebSlide[] {
         if (!this._slidesCache) {
             const childNodes = Array.from(this.childNodes);
             this._slidesCache = childNodes.filter((child) => (child instanceof WebSlide)) as WebSlide[];
@@ -127,17 +127,17 @@ export class WebSlides extends HTMLElement {
         return this._slidesCache;
     }
 
-    public get disabled() { return false; } //TODO
-    public get isMoving() { return this._isMoving; }
+    get disabled() { return false; } // TODO
+    get isMoving() { return this._isMoving; }
 
-    public isScrollTop(tolerance = 5) {
+    isScrollTop(tolerance = 5) {
         return this.scrollTop < tolerance;
     }
-    public isScrollBottom(tolerance = 5) {
+    isScrollBottom(tolerance = 5) {
         return this.scrollHeight - (this.scrollTop + this.clientHeight) < tolerance;
     }
 
-    public flush() {
+    flush() {
         this._slidesCache = null;
         // TODO: fire statechange event
     }
@@ -148,7 +148,7 @@ export class WebSlides extends HTMLElement {
     }
 
     // Global Config
-    public static registerPlugin(pluginName: string, plugin: WSPluginConstructor) {
+    static registerPlugin(pluginName: string, plugin: WSPluginConstructor) {
         pluginRegistry[pluginName] = plugin;
     }
 }

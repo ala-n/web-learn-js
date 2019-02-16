@@ -1,13 +1,13 @@
-import {NEXT_SLIDE, PREV_SLIDE, WebSlides} from "../web-slides";
+import {NEXT_SLIDE, PREV_SLIDE, WebSlides} from '../web-slides';
 import {html, render} from 'lit-html';
-import {SlideEventType} from "../web-slide-event";
+import {SlideEventType} from '../web-slide-event';
 
 export class WebSlidesNavBar extends HTMLElement {
-    public static get is() { return 'web-slides-nav'; }
+    static get is() { return 'web-slides-nav'; }
 
     private _owner: WebSlides;
 
-    public connectedCallback() {
+    connectedCallback() {
         this._owner = document.querySelector(WebSlides.is) as WebSlides;
         if (this._owner) {
             this.render();
@@ -15,7 +15,7 @@ export class WebSlidesNavBar extends HTMLElement {
             this.addEventListener('click', this.onClick);
         }
     }
-    public disconnectedCallback() {
+    disconnectedCallback() {
         this._owner.removeEventListener(SlideEventType.CHANGED, this.onStateChanged);
         this.removeEventListener('click', this.onClick);
     }
@@ -40,7 +40,7 @@ export class WebSlidesNavBar extends HTMLElement {
         }
     };
 
-    public render() {
+    render() {
         const count = this._owner.count;
         const activeSlide = this._owner.activeSlide;
         const activeIndex = activeSlide ? (activeSlide.index + 1) : 0;

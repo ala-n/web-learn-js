@@ -1,19 +1,19 @@
 // Strict Polyfills
 import './polyfills/closest';
 // Bundle
-import {DeviceDetector} from "./utils/devices";
+import {DeviceDetector} from './utils/devices';
 
-import {WebSlide} from "./web-slide";
-import {WebSlides} from "./web-slides";
+import {WebSlide} from './web-slide';
+import {WebSlides} from './web-slides';
 
-import {WebSlidesHashPlugin} from "./plugins/ws-hash";
-import {WebSlidesMouseWheelPlugin} from "./plugins/ws-mousewheel";
-import {WebSlidesKeyboardPlugin} from "./plugins/wc-keyboard";
-import {WebSlidesMutationPlugin} from "./plugins/ws-mutation";
-import {WebSlidesTouchPlugin} from "./plugins/ws-touch";
+import {WebSlidesHashPlugin} from './plugins/ws-hash';
+import {WebSlidesMouseWheelPlugin} from './plugins/ws-mousewheel';
+import {WebSlidesKeyboardPlugin} from './plugins/wc-keyboard';
+import {WebSlidesMutationPlugin} from './plugins/ws-mutation';
+import {WebSlidesTouchPlugin} from './plugins/ws-touch';
 
-import {WebSlidesNavBar} from "./components/web-slides-navbar";
-import {WebSlidesNavMenu} from "./components/web-slides-navmenu";
+import {WebSlidesNavBar} from './components/web-slides-navbar';
+import {WebSlidesNavMenu} from './components/web-slides-navmenu';
 
 // Register Core Plugins
 WebSlides.registerPlugin('hash', WebSlidesHashPlugin);

@@ -1,5 +1,5 @@
-import {WebSlidesPlugin} from "../web-slides-plugin";
-import {SlideEventType, WebSlideChangeEvent} from "../web-slide-event";
+import {WebSlidesPlugin} from '../web-slides-plugin';
+import {SlideEventType, WebSlideChangeEvent} from '../web-slide-event';
 
 export class WebSlidesHashPlugin extends WebSlidesPlugin {
 
@@ -15,7 +15,7 @@ export class WebSlidesHashPlugin extends WebSlidesPlugin {
     }
 
     private onWindowHashChange = () => {
-        let hash = window.location.hash.substr(1);
+        const hash = window.location.hash.substr(1);
         this.ws.goTo(isNaN(+hash) ? hash : (+hash - 1));
     };
 

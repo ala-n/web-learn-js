@@ -9,21 +9,21 @@ interface KeyMap {
 export class KeyboardManager {
   private keyMap: KeyMap = {};
 
-  constructor (
+  constructor(
       private predicate: KeyHandler = () => true
   ) {
     document.addEventListener('keydown', this.onKeyDown, false);
   }
 
-  public on(key: string | string[], handler: KeyHandler) {
-    if (Array.isArray(key)) {
-      key.forEach((key) => this.on(key, handler));
+  on(keys: string | string[], handler: KeyHandler) {
+    if (Array.isArray(keys)) {
+      keys.forEach((key) => this.on(key, handler));
     } else {
-      this.keyMap[KeyboardManager.sanitizeKey(key)] = handler;
+      this.keyMap[KeyboardManager.sanitizeKey(keys)] = handler;
     }
   }
 
-  public destroy() {
+  destroy() {
     document.removeEventListener('keydown', this.onKeyDown);
   }
 
@@ -38,7 +38,7 @@ export class KeyboardManager {
   };
 
   private static getKeycmd(e: KeyboardEvent) {
-    let keys = [e.key];
+    const keys = [e.key];
     (e.altKey && keys.indexOf('Alt') === -1) && keys.push('Alt');
     (e.ctrlKey && keys.indexOf('Control') === -1) && keys.push('Control');
     (e.shiftKey && keys.indexOf('Shift') === -1) && keys.push('Shift');

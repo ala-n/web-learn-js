@@ -1,5 +1,5 @@
-import {WebSlidesPlugin} from "../web-slides-plugin";
-import {DeviceDetector} from "../utils/devices";
+import {WebSlidesPlugin} from '../web-slides-plugin';
+import {DeviceDetector} from '../utils/devices';
 
 interface Point {
     x: number;
@@ -8,27 +8,28 @@ interface Point {
 
 export class WebSlidesTouchPlugin extends WebSlidesPlugin {
 
-    public static TOUCH_TOLERANCE = 100;
-    public static get EVENTS() {
-        if (DeviceDetector.isTouchDevice())
+    static TOUCH_TOLERANCE = 100;
+    static get EVENTS() {
+        if (DeviceDetector.isTouchDevice()) {
             return {
                 START: 'touchstart',
                 MOVE: 'touchmove',
                 END: 'touchend'
             };
-        else
+        } else {
             return {
                 START: 'pointerdown',
                 MOVE: 'pointermove',
                 END: 'pointerup'
             };
+        }
     }
 
     private startPoint: Point = null;
     private isEnabled = false;
 
-    private topY:number = null;
-    private bottomY:number = null;
+    private topY: number = null;
+    private bottomY: number = null;
 
     bind(): void {
         const events = WebSlidesTouchPlugin.EVENTS;
@@ -109,7 +110,7 @@ export class WebSlidesTouchPlugin extends WebSlidesPlugin {
             return {
                 x: touch.pageX,
                 y: touch.pageY,
-            }
+            };
         }
         return {
           x: event.pageX,

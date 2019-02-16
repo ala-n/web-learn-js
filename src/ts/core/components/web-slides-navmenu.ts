@@ -1,20 +1,20 @@
-import {WebSlides} from "../web-slides";
+import {WebSlides} from '../web-slides';
 import {html, render} from 'lit-html';
-import {SlideEventType} from "../web-slide-event";
+import {SlideEventType} from '../web-slide-event';
 
 export class WebSlidesNavMenu extends HTMLElement {
-    public static get is() { return 'web-slides-nav-menu'; }
+    static get is() { return 'web-slides-nav-menu'; }
 
     private _owner: WebSlides;
 
-    public connectedCallback() {
+    connectedCallback() {
         this._owner = document.querySelector(WebSlides.is) as WebSlides;
         if (this._owner) {
             this.render();
             this._owner.addEventListener(SlideEventType.CHANGED, this.onStateChanged);
         }
     }
-    public disconnectedCallback() {
+    disconnectedCallback() {
         this._owner.removeEventListener(SlideEventType.CHANGED, this.onStateChanged);
     }
 
@@ -22,7 +22,7 @@ export class WebSlidesNavMenu extends HTMLElement {
         this.render();
     };
 
-    public render() {
+    render() {
         const menuList = this._owner.slides.map((slide) => ({
             link: '#' + slide.route,
             title: slide.slideTitle,

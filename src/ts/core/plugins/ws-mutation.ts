@@ -1,5 +1,5 @@
-import {WebSlidesPlugin} from "../web-slides-plugin";
-import {WebSlide} from "../web-slide";
+import {WebSlidesPlugin} from '../web-slides-plugin';
+import {WebSlide} from '../web-slide';
 
 export class WebSlidesMutationPlugin extends WebSlidesPlugin {
     private _contentObserver: MutationObserver;

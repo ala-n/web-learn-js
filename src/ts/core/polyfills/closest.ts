@@ -1,10 +1,10 @@
 /**
  * Element.closest polyfill
  * */
-(function (e) {
+(function(e) {
     // @ts-ignore
     e.matches = e.matches || e.msMatchesSelector || e.mozMatchesSelector || e.webkitMatchesSelector;
-    e.closest = e.closest || function (css: string) {
+    e.closest = e.closest || function(css: string) {
         let node = this;
         while (node) {
             if (node.matches(css)) return node;

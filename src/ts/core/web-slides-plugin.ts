@@ -1,4 +1,4 @@
-import {WebSlides} from "./web-slides";
+import {WebSlides} from './web-slides';
 
 export abstract class WebSlidesPlugin {
     protected readonly ws: WebSlides;
@@ -12,6 +12,4 @@ export abstract class WebSlidesPlugin {
     abstract destroy(): void;
 }
 
-export interface WSPluginConstructor {
-    new(owner: WebSlides): WebSlidesPlugin;
-}
+export type WSPluginConstructor = new(owner: WebSlides) => WebSlidesPlugin;
