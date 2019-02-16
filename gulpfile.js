@@ -18,11 +18,16 @@ function serveTask() {
     const { spawn } = require('child_process');
     const browserSync = require('browser-sync').create();
 
-    spawn('node', ['index.js'], {
+    const serverProcess = spawn('node', ['index.js'], {
         env: {
-            PORT: DEV_PORT
+            PORT: DEV_PORT,
+            GZIP: false,
+            CACHE: false
         }
     });
+    serverProcess.stdout.on('data', (data) => console.log(data.toString()));
+    serverProcess.stderr.on('data', (data) => console.error(data.toString()));
+
     browserSync.init({
         proxy: {
             target: `localhost:${DEV_PORT}`,
@@ -36,8 +41,7 @@ function serveTask() {
     gulp.task('rebuild-scripts', () => tasks.buildJS(false).pipe(browserSync.stream()));
 
     // INIT WATCH
-    gulp.watch('src/js/**/*.js', gulp.series('rebuild-scripts'));
-    gulp.watch('src/js/**/*.ts', gulp.series('rebuild-scripts'));
+    gulp.watch('src/ts/**/*.ts', gulp.series('rebuild-scripts'));
     gulp.watch('src/less/**/*.less', gulp.series('rebuild-less'));
     gulp.watch('src/**/*.html', gulp.series('rebuild-html'));
 }

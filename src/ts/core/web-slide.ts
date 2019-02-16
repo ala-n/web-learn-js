@@ -3,7 +3,7 @@ export class WebSlide extends HTMLElement {
 
     static get ACTIVE_CLASS() { return 'active'; }
 
-    _index: number;
+    private _index: number;
 
     constructor() {
         super();
@@ -30,10 +30,17 @@ export class WebSlide extends HTMLElement {
     }
 
     get slideTitle() {
-        return this.getAttribute('slide-title');
+        if (this.hasAttribute('slide-title')) {
+            return this.getAttribute('slide-title');
+        }
+        return this.headerContent;
     }
     set slideTitle(title: string) {
         this.setAttribute('slide-title', title);
+    }
+    private get headerContent() {
+        const header = this.querySelector('h1,h2,h3');
+        return header && header.textContent.trim();
     }
 
     get route() {
