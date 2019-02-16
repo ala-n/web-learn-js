@@ -2,8 +2,6 @@
 const gulp = require('gulp');
 const tasks = require('./build/gulp-tasks');
 
-const CONSTANTS = require('./build/paths-config.json');
-
 gulp.task('gzip', tasks.gzip);
 gulp.task('clean', tasks.cleanTask);
 gulp.task('build-html', tasks.buildHTML);
@@ -15,17 +13,22 @@ gulp.task('build-js-prod', () => tasks.buildJS(true));
 gulp.task('build', gulp.parallel('build-less', 'build-js', 'build-html'));
 gulp.task('build-prod', gulp.series(gulp.parallel('build-less-prod', 'build-js-prod', 'build-html'), 'gzip'));
 
+const DEV_PORT = 8081;
 function serveTask() {
+    const { spawn } = require('child_process');
     const browserSync = require('browser-sync').create();
+
+    spawn('node', ['index.js'], {
+        env: {
+            PORT: DEV_PORT
+        }
+    });
     browserSync.init({
-        server: [
-            './' + CONSTANTS.OUTPUT_DIR,
-            './' + CONSTANTS.ASSETS_DIR
-        ],
-        // files: [
-        //     './' + CONSTANTS.OUTPUT_DIR,
-        //     './' + CONSTANTS.ASSETS_DIR
-        // ]
+        proxy: {
+            target: `localhost:${DEV_PORT}`,
+            ws: true
+        },
+        port: 8080
     });
 
     gulp.task('rebuild-html', () => tasks.buildHTML().pipe(browserSync.stream()));

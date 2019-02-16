@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "run": "npm run build && node index.js",
+    "run": "npm run prod-build && node index.js",
     "devserv": "gulp default",
     "dev-build": "gulp build",
     "prod-build": "gulp build-prod",

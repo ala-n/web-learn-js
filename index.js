@@ -1,12 +1,12 @@
 const http = require('http');
 const Static = require('node-static');
 
-const assets = new Static.Server('./assets', {gzip: false, cache: 7200});
-const pubish = new Static.Server('./publish', {gzip: true, cache: 7200});
+const assets = new Static.Server('./assets', {gzip: false, cache: 24 * 7200});
+const publish = new Static.Server('./publish', {gzip: true, cache: 7200});
 
 const server = http.createServer((request, response) => {
-    request.addListener('end', function () {
-        const result = pubish.serve(request, response);
+    request.on('end', function () {
+        const result = publish.serve(request, response);
         result.on('error', () => assets.serve(request, response));
     }).resume();
 });
