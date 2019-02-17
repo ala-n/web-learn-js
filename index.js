@@ -1,5 +1,6 @@
 const http = require('http');
 const Static = require('node-static');
+const CodepenHandler = require('./server/codepen-handler.js');
 
 // Options
 const PORT = process.env.PORT || 5000;
@@ -24,6 +25,10 @@ const publish = new Static.Server('./publish', {
 });
 
 const server = http.createServer((request, response) => {
+    if (request.url.startsWith('/pen/')) {
+        CodepenHandler.handle(request, response);
+        return;
+    }
     request.on('end', function () {
         const result = publish.serve(request, response);
         result.on('error', () => assets.serve(request, response));

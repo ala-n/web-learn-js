@@ -1,0 +1,28 @@
+.container {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.toolbar {
+    text-align: center;
+}
+
+#notes {
+    max-height: 250px;
+    overflow: auto;
+}
+
+.note {
+    background: #FFF9C4;
+    margin: 5px;
+    padding: 5px;
+    border: gray 1px solid;
+    border-radius: 5px;
+}
+.note > .content {
+    margin-bottom: 5px;
+}
+.note > .date {
+    text-align: right;
+    border-top: gray 1px solid;
+}

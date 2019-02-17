@@ -1,0 +1,8 @@
+.container {
+    display: flex;
+    flex-flow: column;
+}
+
+.content {
+    padding: 10px;
+}
