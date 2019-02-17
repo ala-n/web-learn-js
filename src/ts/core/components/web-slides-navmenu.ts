@@ -8,6 +8,8 @@ interface SlideLink {
     link: string;
 }
 
+const EMPTY_LINK = {title: '', link: '', active: false};
+
 export class WebSlidesNavMenu extends HTMLElement {
     static get is() { return 'web-slides-nav-menu'; }
 
@@ -46,17 +48,15 @@ export class WebSlidesNavMenu extends HTMLElement {
         `, this);
     }
 
-    private static filter(allLinks:SlideLink[]): SlideLink[]{
-        const links: SlideLink[] = [];
-        const empty = {title: '', link: '', active: false};
-        allLinks.forEach((link) => {
-            const prev:SlideLink = links[links.length - 1] || empty;
+    private static filter(allLinks: SlideLink[]): SlideLink[] {
+        return allLinks.reduce((links: SlideLink[], link: SlideLink) => {
+            const prev: SlideLink = links[links.length - 1] || EMPTY_LINK;
             if (link.title && prev.title !== link.title) {
                 links.push(link);
             } else {
                 prev.active = prev.active || link.active;
             }
-        });
-        return links;
+            return links;
+        }, []);
     }
 }
