@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- SEO -->
-    <title>JS: Работа с DOM</title>
-    <meta name="description" content="JS: Работа с DOM">
+    <title>Alan JS Learn</title>
+    <meta name="description" content="Alan JS Learn">
 
     <!-- URL CANONICAL -->
     <link rel="canonical" href="http://alan-js-learn.herkuapp.com/">
@@ -16,7 +16,10 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type='text/css' media='all' href="styles.css">
-    <link rel="stylesheet" type='text/css' media='print' href="styles-print.css">
+
+    <!-- Prefetch -->
+    <link rel="prefetch" type='text/css' media='print' href="styles-print.css">
+    <link rel="prefetch" type='text/javascript' media='print' href="app.js">
 
     <!-- FAVICONS -->
     <link rel="shortcut icon" sizes="16x16" href="images/favicons/favicon.png">
@@ -40,55 +43,13 @@
             document.write('<script src="polyfills.js" type="text/javascript"><\/script>');
         }
     </script>
-    <script src="app.js" type="text/javascript" defer></script>
 </head>
 <body>
-
-<header role="banner">
-    <div class="landing-bg"></div>
-    <nav role="navigation" class="navbar">
-        <a href="index.html" title="Home" class="logo">
-            <img src="./images/logo-dark.png" alt="" class="print-only"/>
-            <img src="./images/logo.png" alt="exadel"/>
-        </a>
-        <!--<ul>-->
-        <!--<li>-->
-        <!--<a href="https://learn.javascript.ru" target="_blank" class="navlink">-->
-        <!--<img src="images/logos/learn.javascript.svg"/>-->
-        <!--</a>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="https://developer.mozilla.org" target="_blank" class="navlink">-->
-        <!--<img src="images/logos/mdn.svg"/>-->
-        <!--</a>-->
-        <!--</li>-->
-        <!--</ul>-->
-        <web-slides-nav></web-slides-nav>
-    </nav>
-</header>
-
-<main>
-    <web-slides role="article">
-        <include src="./slides/landing.html"></include>
-
-        <include src="./slides/links.html"></include>
-
-        <include src="./slides/dom/dom.html"></include>
-
-        <!--<-include src="./slides/test-page.html"></include>-->
-
-        <include src="./slides/resource-page.html"></include>
-
-        <include src="./slides/best-practices/best-practices.html"></include>
-
-        <include src="./slides/task-page.html"></include>
-        <include src="./slides/questions-page.html"></include>
-        <include src="./slides/thanks-page.html"></include>
-    </web-slides>
-    <aside>
-        <web-slides-nav-menu></web-slides-nav-menu>
-    </aside>
-</main>
-
+    <main>
+        <ul>
+            <li><a href="es6.html">ES6 Deep</a></li>
+            <li><a href="../dom.html">BOM & DOM</a></li>
+        </ul>
+    </main>
 </body>
 </html>

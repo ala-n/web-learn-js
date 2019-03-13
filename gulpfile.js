@@ -10,7 +10,7 @@ gulp.task('build-less-prod', () => tasks.buildLess(true));
 gulp.task('build-js', () => tasks.buildJS(false));
 gulp.task('build-js-prod', () => tasks.buildJS(true));
 
-gulp.task('build', gulp.parallel('build-less', 'build-js', 'build-html'));
+gulp.task('build', gulp.series('clean', gulp.parallel('build-less', 'build-js', 'build-html')));
 gulp.task('build-prod', gulp.series(gulp.parallel('build-less-prod', 'build-js-prod', 'build-html'), 'gzip'));
 
 const DEV_PORT = 8081;

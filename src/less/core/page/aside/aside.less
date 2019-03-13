@@ -22,4 +22,21 @@ aside {
     height: ~'calc(100vh - 47px)';
     transition: height .5s linear, opacity .25s linear;
   }
+
+  @media (max-width: 768px) {
+    top: 38px;
+    left: auto;
+    bottom: 0;
+    height: auto;
+    width: 0;
+
+    transition: width .25s linear, opacity .25s linear;
+
+    .menu &{
+      opacity: 1;
+      width: 100%;
+      height: auto;
+      transition: width .25s linear, opacity .25s linear;
+    }
+  }
 }

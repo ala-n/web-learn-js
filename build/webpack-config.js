@@ -36,6 +36,7 @@ module.exports.getDevConfig = function () {
         plugins: [
             new ForkTsCheckerWebpackPlugin({
                 tslint: TS_LINT,
+               // tslintAutoFix: true,
                 tsconfig: TS_CONFIG
             })
         ]
