@@ -35,6 +35,8 @@ function cleanIndents(inpText) {
         indent = Math.min(indent, count(line, [' ', '\t']));
     }
 
+    console.log(`[HTML <include-code> plugin]: removed ${indent} indents for "${(inpText || '').trim().substr(0, 20)}..."`);
+
     const regex = new RegExp('^(\\s{' + String(indent) + '})');
 
     return lines.map((line) => {
