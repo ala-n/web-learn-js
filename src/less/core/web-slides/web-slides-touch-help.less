@@ -1,0 +1,36 @@
+.ws-touch-help {
+  position: fixed;
+  top: 60vh;
+  height: 30vh;
+  left: 30vw;
+  width: 40vw;
+
+  animation: helper-appear-animation 1s linear;
+  svg {
+    fill: rgba(0, 97, 255, 0.61);
+    width: 100%;
+
+    transform-origin: right center;
+    animation: helper-animation 1.5s infinite ease-in-out;
+  }
+}
+
+@keyframes helper-animation {
+  0% {
+    transform: translateY(20%);
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(20%);
+  }
+}
+@keyframes helper-appear-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -11,6 +11,7 @@ import {WebSlidesMouseWheelPlugin} from './plugins/ws-mousewheel';
 import {WebSlidesKeyboardPlugin} from './plugins/wc-keyboard';
 import {WebSlidesMutationPlugin} from './plugins/ws-mutation';
 import {WebSlidesTouchPlugin} from './plugins/ws-touch';
+import {WebSlidesTouchHelpPlugin} from './plugins/ws-touch-help';
 
 import {WebSlidesNavBar} from './components/web-slides-navbar';
 import {WebSlidesNavMenu} from './components/web-slides-navmenu';
@@ -22,6 +23,7 @@ if (!DeviceDetector.isMobile()) {
     WebSlides.registerPlugin('keyboard', WebSlidesKeyboardPlugin);
 }
 WebSlides.registerPlugin('touch', WebSlidesTouchPlugin);
+WebSlides.registerPlugin('touch-help', WebSlidesTouchHelpPlugin);
 WebSlides.registerPlugin('mutation', WebSlidesMutationPlugin);
 
 // Register Core Components
