@@ -21,7 +21,7 @@ function count(text, symbols) {
 
 function cleanIndents(inpText) {
     let text = fixTabs(inpText, 2);
-    let lines = text.split('\r\n');
+    let lines = text.replace(/\r/g, '').split('\n');
     let indent = Number.MAX_SAFE_INTEGER;
 
     while (lines.length > 0 && lines[0].trim().length === 0) {
