@@ -113,64 +113,7 @@ hr {
 @import "margins";
 @import "text";
 @import "grid";
-
-.box-white {
-  width: 100%;
-  padding: 1rem 2rem;
-
-  background: #fff;
-  border: 1px solid rgba(0, 20, 80, 0.1);
-  box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
-
-  text-align: left;
-
-  &:hover {
-    box-shadow: 0 8px 16px rgba(0, 40, 160, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
-  }
-}
-
-pre,
-code {
-  font-family: 'Cousine', monospace;
-}
-pre {
-  font-size: 1.6rem;
-  line-height: 2.4rem;
-
-  white-space: pre-wrap;
-  word-wrap: break-word;
-
-  overflow: auto;
-
-  .box-white();
-
-  + p {
-    margin-top: 3.2rem;
-  }
-  code {
-    padding: 0;
-  }
-}
-code {
-  padding: .4rem;
-  background-color: rgba(255, 255, 255, 0.09);
-}
-
-.note {
-  .box-white;
-
-  font-family: Cousine, monospace;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
-  background: #fffcc8;
-}
-
-pre + pre,
-.note + pre,
-pre + .note,
-.note + .note {
-  margin-top: 1rem;
-}
+@import "content-box";
 
 [class*='content-'] {
   position: relative;

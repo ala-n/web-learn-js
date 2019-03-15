@@ -1,0 +1,15 @@
+.item {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+}
+.item-text {
+    margin: 5px;
+}
+
+.bg-red {
+    background: rgb(255, 200, 200);
+}
+.bg-green {
+    background: rgb(200, 255, 200);
+}
