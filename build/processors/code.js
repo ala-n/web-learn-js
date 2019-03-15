@@ -1,8 +1,6 @@
-const hljs = require('highlight.js');
-
-hljs.configure({
-    classPrefix: 'code-'
-});
+const Prism = require('prismjs');
+const loadLanguages = require('prismjs/components/');
+loadLanguages(['html', 'javascript', 'css']);
 
 function fixTabs(text, tabIndent = 4) {
     let indent = '';
@@ -52,12 +50,14 @@ module.exports = {
             const path = utils.path.join(context.currentDirectory, context.args.src);
             text = utils.getFileContent(path);
         }
-        const lang = context.args.lang;
+        const lang = context.args.lang || 'html';
 
         const cleanText = cleanIndents(text);
-        const hResult = hljs.highlightAuto(cleanText, typeof lang === 'string' ? [lang] : ['javascript', 'html']);
-        const code = hResult.value.replace(/!##/ig, '<strong>').replace(/##!/ig, '</strong>');
 
-        return `<pre class="code ${hResult.language}"><code>${code}</code></pre>`;
+        const prismFormated = Prism.highlight(cleanText, Prism.languages[lang], lang);
+
+        const code = prismFormated.replace(/!##/ig, '<strong>').replace(/##!/ig, '</strong>');
+
+        return `<pre class="code ${context.args.class || ''}"><code class="language-${lang}">${code}</code></pre>`;
     }
 };
