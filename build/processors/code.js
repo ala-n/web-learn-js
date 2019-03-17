@@ -1,6 +1,6 @@
 const Prism = require('prismjs');
 const loadLanguages = require('prismjs/components/');
-loadLanguages(['html', 'javascript', 'css']);
+loadLanguages(['markup', 'javascript', 'css', 'typescript', 'less']);
 
 function fixTabs(text, tabIndent = 4) {
     let indent = '';

@@ -10,6 +10,11 @@ export class DeviceDetector {
         return DeviceDetector.isMobileIOS() && /WebKit/i.test(ua) && /CriOS/i.test(ua);
     };
 
+    /** Detects print emulation */
+    static isPrint = () => {
+        return window.matchMedia('print').matches;
+    };
+
     static isAndroid() {
         return /Android/i.test(ua);
     }
