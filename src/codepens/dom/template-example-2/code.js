@@ -1,46 +1,47 @@
-// Get the template element from our markup
-const TEMPLATE = document.getElementById('item-template');
+(function(publicScope) {
+    'use strict';
 
-/**
- * That function will create item HTML element from model
- */
-function buildItem(item) {
-    // Getting a copy of template markup (it's prepared and ready HTMLElements)
-    // Just only one moment template tag can contains multiple child tags
-    // so the result of import will be DocumentFragment
-    const fragment = document.importNode(
-        TEMPLATE.content, // Put our templae content
-        true // Deep copy enabled
-    );
-    // We got DocumentFragment our next steps to simplify work is
-    // just get a single root element that we need
-    const newItem = fragment.firstElementChild;
+    // Caching template
+    const template = document.getElementById('note-template');
+    // Caching container
+    const container = document.getElementById('notes');
 
-    // Now we can do anyting we want with the root element
-    newItem.classList.add('bg-' + item.bg);
+    function addItem (data) {
+        // Create a new node using template,
+        // passing content and deepCopy marker
+        let newNote = document.importNode(template.content, true);
 
-    // And we can access all elements inside to update content to the real data
-    newItem.querySelector('.item-text').textContent = item.text;
+        // Here is one of variants how to make
+        // clone node filling more generic
+        // NOTE: optimize it more if you want to use approach like that
 
-    return newItem;
-}
+        // Get all marked placeholders inside new item
+        let placeholders = newNote.querySelectorAll('[data-target]');
+        // Going through them
+        [].forEach.call(placeholders || [], (phElement) => {
+            // Get placeholder attribute value
+            let key = phElement.getAttribute('data-target');
+            // Using it as a key to get value from data object
+            phElement.textContent = String(data[key]); // Data type cast
+        });
 
-
-// An example of usage:
-
-const container = document.getElementById('content');
-
-[
-    {text: 'Test 1', bg: 'red'},
-    {text: 'Test 2', bg: 'green'}
-]
-    .map(buildItem) // Creates HTML elements from model items
-    .forEach((itm) => container.appendChild(itm)); // Ae add them to container to see
-
-// An example of catching events from buttons since we have them in markup
-container.addEventListener('click', onDelete);
-function onDelete (event) { // Listener
-    if (event.target && event.target.classList.contains('btn-delete')) { // Dlegtion
-        container.removeChild(event.target.closest('.item')); // Here can be the method call
+        // Append node
+        container.appendChild(newNote);
     }
-}
+
+
+    // Initial filling
+    [
+        {content: 'First Message', date: new Date()},
+        {content: 'Second Message', date: 'No date'}
+    ].forEach((item) => addItem(item));
+
+    // An example of runtime usage
+    publicScope.onAddItem = () => {
+        var content =
+            document.querySelector('#addItemForm [name="content"]');
+        addItem({
+            content: content.value, date: new Date()
+        });
+    }
+})(window);

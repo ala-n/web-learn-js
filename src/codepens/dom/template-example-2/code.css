@@ -1,15 +1,28 @@
-.item {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px;
-}
-.item-text {
-    margin: 5px;
+.container {
+    width: 600px;
+    margin: 0 auto;
 }
 
-.bg-red {
-    background: rgb(255, 200, 200);
+.toolbar {
+    text-align: center;
 }
-.bg-green {
-    background: rgb(200, 255, 200);
+
+#notes {
+    max-height: 250px;
+    overflow: auto;
+}
+
+.note {
+    background: #FFF9C4;
+    margin: 5px;
+    padding: 5px;
+    border: gray 1px solid;
+    border-radius: 5px;
+}
+.note > .content {
+    margin-bottom: 5px;
+}
+.note > .date {
+    text-align: right;
+    border-top: gray 1px solid;
 }

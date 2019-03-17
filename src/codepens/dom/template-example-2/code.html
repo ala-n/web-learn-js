@@ -1,10 +1,19 @@
-<div id="content">
-    <template id="item-template">
-        <div class="item">
-            <p class="item-text"></p>
-            <div class="item-tools">
-                <button class="btn btn-delete">Delete</button>
-            </div>
-        </div>
-    </template>
+<div class="container">
+    <div id="notes">
+        <!--Here will be our notes-->
+
+        <template id="note-template">
+            <article class="note">
+                <div class="content" data-target="content"></div>
+                <div class="date" data-target="date"></div>
+            </article>
+        </template>
+    </div>
+
+    <div class="toolbar">
+        <form id="addItemForm" action="javascript: onAddItem()">
+            <input required name="content" type="text"/>
+            <button type="submit">Add</button>
+        </form>
+    </div>
 </div>
