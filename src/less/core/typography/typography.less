@@ -46,10 +46,32 @@ em {
 }
 
 a {
+  position: relative;
   color: #44d;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 0;
+    height: 2px;
+
+    background: #44d;
+
+    transition: width ease-in .25s, color ease-in .25s;
+  }
 
   &:hover {
     color: #3af;
+
+    &:after {
+      width: 100%;
+      background: #3af;
+    }
   }
 
   &.important-link {
