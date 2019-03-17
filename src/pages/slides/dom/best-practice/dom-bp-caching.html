@@ -1,0 +1,21 @@
+<web-slide role="region" slide-route="dom-bp-caching">
+    <div class="wrap">
+        <h2>Поиск по DOM</h2>
+
+        <div class="text-context">
+            <p>Помним про то, что, по возможности, стараемся сократить изменения Live DOM.</p>
+            <p>Помимо этого, также следует учитывать, что и поиск по дереву операция не элементарная (хотя и относительно быстрая).</p>
+            <include-code lang="javascript" src="./code/find-el-bad.js" class="box-invalid"></include-code>
+        </div>
+    </div>
+</web-slide>
+<web-slide role="region" slide-route="dom-bp-caching-2">
+    <div class="wrap">
+        <h2>Поиск по DOM</h2>
+
+        <div class="text-context">
+            <p>Найденные статические HTML элементы лучше "кэшировать":</p>
+            <include-code lang="javascript" src="./code/find-el-good.js" class="box-valid"></include-code>
+        </div>
+    </div>
+</web-slide>
