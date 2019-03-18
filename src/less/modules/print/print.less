@@ -12,11 +12,6 @@
 		animation: none !important;
 	}
 
-	// TODO ?
-	.wrap > :last-child {
-		margin-bottom: 6px;
-	}
-
 	.no-print {
 		display: none !important;
 	}
@@ -27,11 +22,8 @@
 	}
 
 	* {
-		background: transparent !important;
-		color: #000 !important;
 		-webkit-filter: none !important;
 		filter: none !important;
-		text-shadow: none !important;
 	}
 
 	html,
@@ -45,6 +37,7 @@
 	web-slide {
 		display: flex !important;
 		height: auto !important;
+		page-break-after: always;
 		* {
 			-webkit-animation: none;
 			animation: none;
