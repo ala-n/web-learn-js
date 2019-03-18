@@ -64,6 +64,9 @@ header {
     .arrow-next, .arrow-prev {
       opacity: 0;
       transition: all .5s linear;
+      &:focus, &:active {
+        opacity: 1;
+      }
     }
   }
 

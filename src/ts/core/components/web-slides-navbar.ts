@@ -45,9 +45,9 @@ export class WebSlidesNavBar extends HTMLElement {
         const activeSlide = this._owner.activeSlide;
         const activeIndex = activeSlide ? (activeSlide.index + 1) : 0;
         render(html`
-            <a href="@next" title="Arrow Keys" class="nav-item arrow-next">↓</a>
+            <a href="@prev" title="Previous slide" class="nav-item arrow-prev">↑</a>
             <a href="@menu" title="View all slides" class="nav-item counter-link">${activeIndex} / ${count}</a>
-            <a href="@prev" title="Arrow Keys" class="nav-item arrow-prev">↑</a>
+            <a href="@next" title="Next slide" class="nav-item arrow-next">↓</a>
         `, this);
     }
 }
