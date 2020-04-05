@@ -1,7 +1,6 @@
 import {WebSlidesPlugin} from '../web-slides-plugin';
 
 const WHEEL_TOLERANCE = 60;
-const SCROLL_TOLERANCE = 5; // px
 
 export class WebSlidesMouseWheelPlugin extends WebSlidesPlugin {
     bind(): void {

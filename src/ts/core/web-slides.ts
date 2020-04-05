@@ -7,6 +7,7 @@ export const NEXT_SLIDE = '@next';
 export const PREV_SLIDE = '@prev';
 
 const pluginRegistry: {[key: string]: WSPluginConstructor} = {};
+
 export class WebSlides extends HTMLElement {
 
     static get is() { return 'web-slides'; }
@@ -71,7 +72,6 @@ export class WebSlides extends HTMLElement {
 
         target.classList.add(direction);
         current.classList.add(direction);
-
         DOM.once(target, DOM.getTransitionEvent(), () => {
             this.scrollTop = 0;
 
