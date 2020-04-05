@@ -27,7 +27,6 @@ function buildItem(item) {
 
 
 // An example of usage:
-
 const container = document.getElementById('content');
 
 [

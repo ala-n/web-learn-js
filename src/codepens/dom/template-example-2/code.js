@@ -11,12 +11,19 @@
         // passing content and deepCopy marker
         let newNote = document.importNode(template.content, true);
 
-        // Here is one of variants how to make
-        // clone node filling more generic
-        // NOTE: optimize it more if you want to use approach like that
+        // fill note data
+        fillItemData(newNote, data);
 
-        // Get all marked placeholders inside new item
-        let placeholders = newNote.querySelectorAll('[data-target]');
+        // Append node
+        container.appendChild(newNote);
+    }
+
+    // Here is one of variants how to make
+    // clone node filling more generic
+    // NOTE: optimize it more if you want to use approach like that
+    function fillItemData(item, data) {
+        // Get all marked placeholders (elements marked by data-target attribute)
+        let placeholders = item.querySelectorAll('[data-target]');
         // Going through them
         [].forEach.call(placeholders || [], (phElement) => {
             // Get placeholder attribute value
@@ -24,13 +31,10 @@
             // Using it as a key to get value from data object
             phElement.textContent = String(data[key]); // Data type cast
         });
-
-        // Append node
-        container.appendChild(newNote);
     }
 
 
-    // Initial filling
+    // Initial content
     [
         {content: 'First Message', date: new Date()},
         {content: 'Second Message', date: 'No date'}

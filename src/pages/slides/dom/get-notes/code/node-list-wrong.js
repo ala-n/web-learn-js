@@ -5,4 +5,4 @@ for(let i=0; i < nodes.length; ++i) {
     // ...
 }
 
-nodes.forEach((node)=>{ /*...*/ }); // TypeError: nodes.forEach is not a function
+var someNodes = nodes.filter((node)=>{ /*...*/ }); // TypeError: nodes.filter is not a function
