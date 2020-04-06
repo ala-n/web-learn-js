@@ -76,7 +76,7 @@ module.exports = function () {
 
         try {
             const content = file.contents.toString();
-            file.contents = new Buffer(process(content, dir));
+            file.contents = Buffer.from(process(content, dir));
             this.push(file);
         } catch (err) {
             this.emit('error', new PluginError(PLUGIN_NAME, err));
