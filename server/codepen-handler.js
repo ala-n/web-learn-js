@@ -5,8 +5,8 @@ const basepath = path.join(__dirname, '../src/codepens/');
 
 function readFile(file) {
     return new Promise((resolve) => {
-       fs.exists(file, (exists) => {
-           if (exists) {
+       fs.access(file, (err) => {
+           if (!err) {
                fs.readFile(file, (err, data) => {
                    resolve((data || "").toString().trim());
                });
