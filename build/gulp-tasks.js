@@ -33,14 +33,7 @@ function buildLess(prod) {
     tmp = prod ? tmp : tmp.pipe(plugins.sourcemaps.init());
     tmp = tmp.pipe(plugins.less())
         .pipe(plugins.postcss([
-            autoprefixer({
-                browsers: [
-                    'last 2 version',
-                    '> 1%',
-                    'not ie <= 10',
-                    'not dead'
-                ]
-            }),
+            autoprefixer(),
             cssnano()
         ]));
     tmp = prod ? tmp : tmp.pipe(plugins.sourcemaps.write());
