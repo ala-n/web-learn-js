@@ -26,8 +26,8 @@
     "ts-loader": "^6.2.2",
     "typescript": "^3.8.3",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.42.1",
-    "webpack-stream": "^5.2.1"
+    "webpack": "^5.107.2",
+    "webpack-stream": "^7.0.0"
   },
   "devDependencies": {
     "browser-sync": "^3.0.4",
