@@ -14,7 +14,7 @@ export class WebSlidesTouchHelpPlugin extends WebSlidesPlugin {
             this.ws.addEventListener(SlideEventType.CHANGED, this.deactivate, {
                 once: true
             });
-            this.helperTimeout = setTimeout(this.show, WebSlidesTouchHelpPlugin.SHOW_TIMEOUT);
+            this.helperTimeout = window.setTimeout(this.show, WebSlidesTouchHelpPlugin.SHOW_TIMEOUT);
         }
     }
     destroy(): void {

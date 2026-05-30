@@ -8,6 +8,7 @@ const MAIN_CONFIG = {
     output: {
         path: path.join(__dirname, '../', CONSTANTS.OUTPUT_DIR),
         filename: '[name].js',
+        hashFunction: 'sha256'
     },
     module: {
         rules: [

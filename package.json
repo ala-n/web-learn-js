@@ -2,12 +2,12 @@
   "name": "alan-learn",
   "version": "1.0.0",
   "description": "Lections JS Basics",
+  "homepage": "https://ala-n.github.io/web-learn-js/",
   "main": "index.js",
   "engines": {
-    "node": "10.16.0"
+    "node": ">=24.0.0"
   },
   "dependencies": {
-    "@webcomponents/custom-elements": "^1.4.1",
     "autoprefixer": "^9.7.6",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
@@ -30,18 +30,16 @@
     "webpack-stream": "^5.2.1"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.7",
-    "tslint": "^6.1.1",
+    "browser-sync": "^3.0.4",
+    "cross-env": "^7.0.3",
     "fork-ts-checker-webpack-plugin": "^4.1.2",
     "gulp-sourcemaps": "^2.6.5"
   },
   "scripts": {
-    "start": "node index.js",
-    "run": "npm run prod-build && node index.js",
-    "build": "npm run prod-build",
-    "devserv": "gulp default",
-    "dev-build": "gulp build",
-    "prod-build": "gulp build-prod"
+    "pages-build": "cross-env NODE_OPTIONS=--openssl-legacy-provider gulp build",
+    "devserv": "cross-env NODE_OPTIONS=--openssl-legacy-provider gulp default",
+    "dev-build": "cross-env NODE_OPTIONS=--openssl-legacy-provider gulp build",
+    "prod-build": "cross-env NODE_OPTIONS=--openssl-legacy-provider gulp build-prod"
   },
   "keywords": [
     "js",

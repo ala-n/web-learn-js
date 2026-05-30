@@ -2,12 +2,19 @@
   "compilerOptions": {
     "module": "commonjs",
     "lib": ["es2017", "dom"],
+    "types": [],
     "target": "es6",
     "noImplicitAny": true,
     "outDir": "./target",
-    "sourceMap": true
+    "sourceMap": true,
+    "skipLibCheck": true
   },
   "include": [
     "src/ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "gulpfile.js"
   ]
 }

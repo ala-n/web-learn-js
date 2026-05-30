@@ -11,6 +11,7 @@ const autoprefixer = require('autoprefixer');
 // WEBPACK
 const wpConfig = require('./webpack-config');
 const webpackStream = require('webpack-stream');
+const staticSite = require('./static-site');
 
 // CONSTANTS
 const CONSTANTS = require('./paths-config.json');
@@ -48,10 +49,15 @@ function buildJS(prod) {
         .pipe(gulp.dest(OUTPUT_DIR));
 }
 
+function prepareStaticSite() {
+    staticSite.buildStaticSite();
+    return Promise.resolve();
+}
+
 function gzip() {
     return gulp.src([path.join(OUTPUT_DIR, '/*'), '!**/*.gz'])
         .pipe(plugins.gzip())
         .pipe(gulp.dest(OUTPUT_DIR));
 }
 
-module.exports = { cleanTask, buildHTML, buildLess, buildJS, gzip };
+module.exports = { cleanTask, buildHTML, buildLess, buildJS, prepareStaticSite, gzip };
